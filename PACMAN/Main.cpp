@@ -3,7 +3,8 @@
 
 int main()
 {
-    Game game;
+    Menu menu;
+    Game game(menu);
     game.Run();
     return 0;
 }

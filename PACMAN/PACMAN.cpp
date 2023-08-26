@@ -1,6 +1,7 @@
 #include "Pacman.hpp"
+#include <string>
 
-Pacman::Pacman(std::vector<std::vector<unsigned char>>& matrix):x(0),y(0)
+Pacman::Pacman(std::vector<std::vector<std::string>>& matrix):x(0),y(0)
 {
 	matrix[0][0] = '@';
 }
