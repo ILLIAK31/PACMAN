@@ -5,9 +5,10 @@
 //
 #include <iostream>
 
-Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen), "Pacman"),matrix(Width, std::vector<std::string>(Height)),pacman(matrix)
+Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "Pacman"),matrix(Width, std::vector<std::string>(Height)),pacman(matrix)
 {
 	Icon.loadFromFile("Icon.png");
+	Window.setSize(sf::Vector2u(CELL * Width * Screen, CELL * Height * Screen * 1.1));
 	Window.setIcon(48, 48, Icon.getPixelsPtr());
 	Window.setFramerateLimit(10);
 
@@ -45,13 +46,13 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 	for (int height = 0; height < Height; ++height)
 	{
 		for (int width = 0; width < Width; ++width)
-			if (height > 5 && (width == 0 || width == 41) && height <= 35)
+			if (height > 5 && (width == 0 || width == 41) && height <= 38)
 				matrix[height][width] = "#";
 	}
 	for (int height = 0; height < Height; ++height)
 	{
 		for (int width = 0; width < Width; ++width)
-			if (height == 36 && width >= 0 && width <= 42)
+			if (height == 39 && width >= 0 && width <= 42)
 				matrix[height][width] = "#";
 	}
 	
@@ -63,7 +64,13 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 
 	matrix[15][4] = matrix[15][5] = matrix[15][6] = matrix[15][7] = matrix[15][8] = matrix[16][4] = matrix[16][5] = matrix[16][6] = matrix[16][7] = matrix[16][8] = "#";
 
+	matrix[20][1] = matrix[20][2] = matrix[20][3] = matrix[20][4] = matrix[20][5] = matrix[20][6] = matrix[20][7] = matrix[20][8] = "#";
+	
+	matrix[24][1] = matrix[24][2] = matrix[24][3] = matrix[24][4] = matrix[24][5] = matrix[24][6] = matrix[24][7] = matrix[24][8] = "#";
+
+
 	start = std::chrono::high_resolution_clock::now();
+
 }
 
 void Game::Run()
@@ -84,8 +91,7 @@ void Game::Run()
 void Game::Render()
 {
 	Window.clear();
-	Window.setSize(sf::Vector2u(CELL * Width * Screen, CELL * Height * Screen));
-	Window.setView(sf::View(sf::FloatRect(0, 0, CELL * Width, CELL * Height)));
+	Window.setView(sf::View(sf::FloatRect(0, 0, CELL * Width, CELL * Height*1.1)));
 	sf::RectangleShape cell(sf::Vector2f(CELL - 1, CELL - 1));
 	for (int height = 0; height < Height; ++height)
 	{
@@ -114,7 +120,7 @@ void Game::Render()
 			}
 			else if (matrix[height][width] == "fruit1")
 			{
-				fruit1_Sprite.setPosition(width*CELL, height*CELL);
+				fruit1_Sprite.setPosition(width*CELL, height*CELL*1.1);
 				Window.draw(fruit1_Sprite);
 			}
 		}
