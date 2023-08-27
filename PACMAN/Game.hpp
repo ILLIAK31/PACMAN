@@ -25,8 +25,8 @@ private:
 	void Update();
 	void Process();
 	std::vector<std::vector<std::string>> matrix;
-	sf::Texture Pacman_Texture , Score1_Texture , Score2_Texture , fruit1_Texture;
-	sf::Sprite Pacman_Sprite , Score1_Sprite , Score2_Sprite , fruit1_Sprite;
+	sf::Texture Pacman_Texture , Score1_Texture , Score2_Texture , fruit1_Texture , PM1_Texture , PM2_Texture , PM3_Texture;
+	sf::Sprite Pacman_Sprite , Score1_Sprite , Score2_Sprite , fruit1_Sprite , PM1_Sprite , PM2_Sprite , PM3_Sprite;
 	Pacman pacman;
 	std::chrono::high_resolution_clock::time_point start, end;
 	std::chrono::milliseconds duration, duration0{ 0 };

@@ -10,6 +10,7 @@ public:
 	~Pacman();
 	int& Get_X();
 	int& Get_Y();
+	int& Get_Lifes();
 private:
-	int x, y;
+	int x, y, lifes{3};
 };

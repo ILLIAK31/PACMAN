@@ -16,4 +16,9 @@ int& Pacman::Get_Y()
 	return this->y;
 }
 
+int& Pacman::Get_Lifes()
+{
+	return this->lifes;
+}
+
 Pacman::~Pacman(){}
