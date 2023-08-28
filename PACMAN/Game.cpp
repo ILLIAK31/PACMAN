@@ -91,8 +91,8 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 
 	matrix[21][0] = matrix[22][0] = matrix[23][0] = matrix[21][41] = matrix[22][41] = matrix[23][41] = "";
 
-	matrix[31][1] = matrix[31][2] = matrix[31][3] = "#";
-	matrix[31][40] = matrix[31][39] = matrix[31][38] = "#";
+	matrix[32][1] = matrix[32][2] = matrix[32][3] = "#";
+	matrix[32][40] = matrix[32][39] = matrix[32][38] = "#";
 
 	matrix[15][20] = matrix[16][20] = matrix[17][20] = matrix[18][20] = matrix[15][21] = matrix[16][21] = matrix[17][21] = matrix[18][21] = matrix[15][19] = matrix[15][18] = matrix[15][17] = matrix[15][16] = matrix[15][15] = matrix[16][19] = matrix[16][18] = matrix[16][17] = matrix[16][16] = matrix[16][15] = matrix[15][22] = matrix[15][23] = matrix[15][24] = matrix[15][25] = matrix[15][26] = matrix[16][22] = matrix[16][23] = matrix[16][24] = matrix[16][25] = matrix[16][26] = "#";
 
@@ -103,8 +103,8 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 	matrix[35][4] = matrix[35][5] = matrix[35][6] = matrix[35][7] = matrix[35][8] = matrix[35][9] = matrix[35][10] = matrix[35][11] = matrix[35][12] = matrix[35][13] = matrix[35][14] = matrix[35][15] = matrix[35][16] = matrix[34][11] = matrix[33][11] = matrix[32][11] = matrix[31][11] = matrix[30][11] = "#";
 	matrix[35][37] = matrix[35][36] = matrix[35][35] = matrix[35][34] = matrix[35][33] = matrix[35][32] = matrix[35][31] = matrix[35][30] = matrix[35][29] = matrix[35][28] = matrix[35][27] = matrix[35][26] = matrix[35][25] = matrix[34][30] = matrix[33][30] = matrix[32][30] = matrix[31][30] = matrix[30][30] = "#";
 
-	matrix[27][5] = matrix[27][4] = matrix[27][6] = matrix[27][7] =  matrix[28][7] = matrix[29][7] = matrix[30][7] = matrix[31][7] = "#";
-	matrix[27][37] = matrix[27][36] = matrix[27][35] = matrix[27][34] = matrix[28][34] = matrix[29][34] = matrix[30][34] = matrix[31][34] = "#";
+	matrix[28][5] = matrix[28][4] = matrix[28][6] =  matrix[28][7] = matrix[29][7] = matrix[30][7] = matrix[31][7] = "#";
+	matrix[28][37] = matrix[28][36] = matrix[28][35] = matrix[28][34] = matrix[29][34] = matrix[30][34] = matrix[31][34] = "#";
 
 	matrix[26][11] = matrix[25][11] = matrix[24][11] = matrix[23][11] = matrix[22][11] = matrix[21][11] = matrix[20][11] = matrix[19][11] = matrix[18][11] = matrix[17][11] = matrix[16][11] = matrix[15][11] = "#";
 	matrix[26][30] = matrix[25][30] = matrix[24][30] = matrix[23][30] = matrix[22][30] = matrix[21][30] = matrix[20][30] = matrix[19][30] = matrix[18][30] = matrix[17][30] = matrix[16][30] = matrix[15][30] = "#";
