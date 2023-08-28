@@ -60,7 +60,7 @@ void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 
 	matrix[15][20] = matrix[16][20] = matrix[17][20] = matrix[18][20] = matrix[15][21] = matrix[16][21] = matrix[17][21] = matrix[18][21] = matrix[15][19] = matrix[15][18] = matrix[15][17] = matrix[15][16] = matrix[15][15] = matrix[16][19] = matrix[16][18] = matrix[16][17] = matrix[16][16] = matrix[16][15] = matrix[15][22] = matrix[15][23] = matrix[15][24] = matrix[15][25] = matrix[15][26] = matrix[16][22] = matrix[16][23] = matrix[16][24] = matrix[16][25] = matrix[16][26] = "#";
 
-	matrix[22][15] = matrix[22][16] = matrix[22][17] = matrix[22][18] = matrix[22][19] = matrix[22][20] = matrix[22][21] = matrix[22][22] = matrix[22][23] = matrix[22][24] = matrix[22][25] = matrix[22][26] = matrix[23][15] = matrix[24][15] = matrix[25][15] = matrix[23][26] = matrix[24][26] = matrix[25][26] = matrix[26][15] = matrix[26][16] = matrix[26][17] = matrix[26][18] = matrix[26][19] = matrix[26][20] = matrix[26][21] = matrix[26][22] = matrix[26][23] = matrix[26][24] = matrix[26][25] = matrix[26][26] = "#";
+	matrix[22][15] = matrix[22][16] = matrix[22][17] = matrix[22][18] = matrix[22][23] = matrix[22][24] = matrix[22][25] = matrix[22][26] = matrix[23][15] = matrix[24][15] = matrix[25][15] = matrix[23][26] = matrix[24][26] = matrix[25][26] = matrix[26][15] = matrix[26][16] = matrix[26][17] = matrix[26][18] = matrix[26][19] = matrix[26][20] = matrix[26][21] = matrix[26][22] = matrix[26][23] = matrix[26][24] = matrix[26][25] = matrix[26][26] = "#";
 
 	matrix[32][15] = matrix[32][16] = matrix[32][17] = matrix[32][18] = matrix[32][19] = matrix[32][20] = matrix[32][21] = matrix[32][22] = matrix[32][23] = matrix[32][24] = matrix[32][25] = matrix[32][26] = matrix[31][15] = matrix[31][16] = matrix[31][17] = matrix[31][18] = matrix[31][19] = matrix[31][20] = matrix[31][21] = matrix[31][22] = matrix[31][23] = matrix[31][24] = matrix[31][25] = matrix[31][26] = matrix[30][15] = matrix[30][16] = matrix[30][17] = matrix[30][18] = matrix[30][19] = matrix[30][20] = matrix[30][21] = matrix[30][22] = matrix[30][23] = matrix[30][24] = matrix[30][25] = matrix[30][26] = matrix[31][20] = matrix[31][21] = matrix[32][20] = matrix[32][21] = matrix[33][20] = matrix[33][21] = matrix[34][20] = matrix[34][21] = matrix[35][20] = matrix[35][21] = matrix[36][20] = matrix[36][21] = "#";
 
@@ -84,6 +84,11 @@ void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 	matrix[15][39] = matrix[15][32] = matrix[18][39] = matrix[18][32] = matrix[18][37] = matrix[18][35] = "*";
 	matrix[20][9] = matrix[22][9] = matrix[24][9] = matrix[26][9] = matrix[28][9] = matrix[30][9] = matrix[32][9] = matrix[34][9] = "*";
 	matrix[20][32] = matrix[22][32] = matrix[24][32] = matrix[26][32] = matrix[28][32] = matrix[30][32] = matrix[32][32] = matrix[34][32] = "*";
-
-
+	matrix[38][2] = matrix[38][6] = matrix[38][8] = matrix[38][10] = matrix[38][12] = matrix[38][14] = matrix[38][16] = matrix[38][18] = matrix[38][23] = matrix[38][25] = matrix[38][27] = matrix[38][29] = matrix[38][31] = matrix[38][33] = matrix[38][37] = matrix[38][39] = "*";
+	matrix[26][7] = matrix[26][5] = matrix[26][3] = matrix[28][2] = matrix[30][2] = matrix[30][4] = matrix[32][5] = matrix[34][5] = matrix[34][7] = matrix[34][2] = matrix[36][2] = "*";
+	matrix[26][34] = matrix[26][36] = matrix[26][38] = matrix[28][39] = matrix[30][39] = matrix[32][35] = matrix[34][35] = matrix[34][37] = matrix[34][39] = matrix[36][39] = matrix[30][37] =  "*";
+	matrix[36][18] = matrix[34][18] = matrix[34][16] = matrix[34][13] = matrix[32][13] = matrix[30][13] = "*";
+	matrix[36][23] = matrix[34][23] = matrix[34][25] = matrix[34][28] = matrix[32][28] = matrix[30][28] = "*";
+	//
+	matrix[30][2] = matrix[30][39] = matrix[7][2] = matrix[7][39] = "*P";
 }

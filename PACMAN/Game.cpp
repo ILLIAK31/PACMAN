@@ -70,7 +70,7 @@ void Game::Render()
 	Window.clear();
 	Window.setView(sf::View(sf::FloatRect(0, 0, CELL * Width, CELL * Height*1.1)));
 	sf::RectangleShape cell(sf::Vector2f(CELL - 1, CELL - 1));
-	sf::CircleShape cell2(1.5);
+	sf::CircleShape cell2(1.5) , cell3(4);
 	for (int height = 0; height < Height; ++height)
 	{
 		for (int width = 0; width < Width; ++width)
@@ -120,7 +120,7 @@ void Game::Render()
 			else if (matrix[height][width] == "*")
 			{
 				cell2.setFillColor(sf::Color::White);
-				cell2.setPosition(CELL * width*1.02, CELL * height * 1.02);
+				cell2.setPosition(CELL * width*1.013, CELL * height * 1.02);
 				Window.draw(cell2);
 			}
 			else if (matrix[height][width] == "cherry")
@@ -128,6 +128,12 @@ void Game::Render()
 				fruit1_Sprite.setPosition(width * CELL, height * CELL*0.985);
 				fruit1_Sprite.setScale(cherry_Scale, cherry_Scale);
 				Window.draw(fruit1_Sprite);
+			}
+			else if (matrix[height][width] == "*P")
+			{
+				cell3.setFillColor(sf::Color::White);
+				cell3.setPosition(CELL * width, CELL * height);
+				Window.draw(cell3);
 			}
 		}
 	}
