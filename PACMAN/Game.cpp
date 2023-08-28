@@ -15,19 +15,12 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 	while (!menu.Get_Menu_End())
 		menu.Update(Window);
 
-	float Score1_Scale = 0.075f, Score2_Scale = 0.19f, fruit1_Scale = 0.04f , PM_Scale = 0.065f;
+	float Score1_Scale = 0.075f, Score2_Scale = 0.19f, PM_Scale = 0.065f;
 
 	if (!Pacman_Texture.loadFromFile("pacman_body2.png")) {}
 	Pacman_Sprite.setTexture(Pacman_Texture);
 	float Pacman_Scale = 0.085f;
 	Pacman_Sprite.setScale(Pacman_Scale, Pacman_Scale);
-
-	matrix[4][10] = "score1";
-	matrix[4][25] = "score2";
-	matrix[38][35] = "fruit1";
-	matrix[38][1] = "PM1";
-	matrix[38][4] = "PM2";
-	matrix[38][7] = "PM3";
 
 	if (!Score1_Texture.loadFromFile("score1.png")) {}
 	Score1_Sprite.setTexture(Score1_Texture);
@@ -39,7 +32,6 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 
 	if (!fruit1_Texture.loadFromFile("fruit1.png")) {}
 	fruit1_Sprite.setTexture(fruit1_Texture);
-	fruit1_Sprite.setScale(fruit1_Scale, fruit1_Scale);
 
 	if (!PM1_Texture.loadFromFile("pacman_body.png")) {}
 	PM1_Sprite.setTexture(PM1_Texture);
@@ -78,6 +70,7 @@ void Game::Render()
 	Window.clear();
 	Window.setView(sf::View(sf::FloatRect(0, 0, CELL * Width, CELL * Height*1.1)));
 	sf::RectangleShape cell(sf::Vector2f(CELL - 1, CELL - 1));
+	sf::CircleShape cell2(1.5);
 	for (int height = 0; height < Height; ++height)
 	{
 		for (int width = 0; width < Width; ++width)
@@ -106,6 +99,7 @@ void Game::Render()
 			else if (matrix[height][width] == "fruit1")
 			{
 				fruit1_Sprite.setPosition(width*CELL, height*CELL*1.11);
+				fruit1_Sprite.setScale(fruit1_Scale, fruit1_Scale);
 				Window.draw(fruit1_Sprite);
 			}
 			else if (matrix[height][width] == "PM1" && pacman.Get_Lifes() >= 1)
@@ -122,6 +116,18 @@ void Game::Render()
 			{
 				PM3_Sprite.setPosition(width * CELL, height * CELL * 1.11);
 				Window.draw(PM3_Sprite);
+			}
+			else if (matrix[height][width] == "*")
+			{
+				cell2.setFillColor(sf::Color::White);
+				cell2.setPosition(CELL * width*1.02, CELL * height * 1.02);
+				Window.draw(cell2);
+			}
+			else if (matrix[height][width] == "cherry")
+			{
+				fruit1_Sprite.setPosition(width * CELL, height * CELL*0.985);
+				fruit1_Sprite.setScale(cherry_Scale, cherry_Scale);
+				Window.draw(fruit1_Sprite);
 			}
 		}
 	}
