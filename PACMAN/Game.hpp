@@ -3,6 +3,7 @@
 #include <chrono>
 #include "Pacman.hpp"
 #include "Menu.hpp"
+#include "Matrix.hpp"
 
 constexpr unsigned char CELL = 8;
 constexpr unsigned char Height = 42;
@@ -31,4 +32,5 @@ private:
 	std::chrono::high_resolution_clock::time_point start, end;
 	std::chrono::milliseconds duration, duration0{ 0 };
 	int speed{1};
+	Matrix matrix_setup;
 };
