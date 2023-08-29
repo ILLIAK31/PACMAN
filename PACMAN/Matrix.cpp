@@ -21,19 +21,19 @@ void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 	{
 		for (int width = 0; width < 42; ++width)
 			if (height == 5 && width >= 0 && width <= 42)
-				matrix[height][width] = "#";
+				matrix[height][width] = "#1";
 	}
 	for (int height = 0; height < 42; ++height)
 	{
 		for (int width = 0; width < 42; ++width)
 			if (height > 5 && (width == 0 || width == 41) && height <= 39)
-				matrix[height][width] = "#";
+				matrix[height][width] = "#5";
 	}
 	for (int height = 0; height < 42; ++height)
 	{
 		for (int width = 0; width < 42; ++width)
 			if (height == 40 && width >= 0 && width <= 42)
-				matrix[height][width] = "#";
+				matrix[height][width] = "#1";
 	}
 
 	matrix[9][4] = matrix[9][5] = matrix[9][6] = matrix[9][7] = matrix[10][4] = matrix[11][4] = matrix[11][5] = matrix[11][6] = matrix[11][7] = matrix[10][7] = "#";
@@ -73,6 +73,13 @@ void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 	matrix[26][11] = matrix[25][11] = matrix[24][11] = matrix[23][11] = matrix[22][11] = matrix[21][11] = matrix[20][11] = matrix[19][11] = matrix[18][11] = matrix[17][11] = matrix[16][11] = matrix[15][11] = "#";
 	matrix[26][30] = matrix[25][30] = matrix[24][30] = matrix[23][30] = matrix[22][30] = matrix[21][30] = matrix[20][30] = matrix[19][30] = matrix[18][30] = matrix[17][30] = matrix[16][30] = matrix[15][30] = "#";
 
+
+	matrix[5][0] = matrix[24][0] = "#2";
+	matrix[5][20] = matrix[5][21] = "#3";
+	matrix[5][41] = matrix[24][41] = "#4";
+	matrix[20][0] = matrix[40][0] = "#6";
+	matrix[20][41] = matrix[40][41] = "#7";
+
 	// Points
 
 	matrix[7][2] = matrix[7][4] = matrix[7][6] = matrix[7][8] = matrix[7][10] = matrix[7][12] = matrix[7][14] = matrix[7][16] = matrix[7][18] = "*";
@@ -89,6 +96,9 @@ void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 	matrix[26][34] = matrix[26][36] = matrix[26][38] = matrix[28][39] = matrix[30][39] = matrix[32][35] = matrix[34][35] = matrix[34][37] = matrix[34][39] = matrix[36][39] = matrix[30][37] =  "*";
 	matrix[36][18] = matrix[34][18] = matrix[34][16] = matrix[34][13] = matrix[32][13] = matrix[30][13] = "*";
 	matrix[36][23] = matrix[34][23] = matrix[34][25] = matrix[34][28] = matrix[32][28] = matrix[30][28] = "*";
+	matrix[38][4] = matrix[38][35] = "*";
 	//
 	matrix[30][2] = matrix[30][39] = matrix[7][2] = matrix[7][39] = "*P";
+
+	//
 }
