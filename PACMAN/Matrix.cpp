@@ -8,13 +8,6 @@ Matrix::~Matrix(){}
 
 void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 {
-
-	matrix[4][10] = "score1";
-	matrix[4][25] = "score2";
-	matrix[38][35] = "fruit1";
-	matrix[38][1] = "PM1";
-	matrix[38][4] = "PM2";
-	matrix[38][7] = "PM3";
 	matrix[38][20] = "cherry";
 
 	for (int height = 0; height < 42; ++height)
@@ -96,7 +89,7 @@ void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 	matrix[26][34] = matrix[26][36] = matrix[26][38] = matrix[28][39] = matrix[30][39] = matrix[32][35] = matrix[34][35] = matrix[34][37] = matrix[34][39] = matrix[36][39] = matrix[30][37] =  "*";
 	matrix[36][18] = matrix[34][18] = matrix[34][16] = matrix[34][13] = matrix[32][13] = matrix[30][13] = "*";
 	matrix[36][23] = matrix[34][23] = matrix[34][25] = matrix[34][28] = matrix[32][28] = matrix[30][28] = "*";
-	matrix[38][4] = matrix[38][35] = "*";
+	matrix[38][35] = matrix[38][4] = "*";
 	//
 	matrix[30][2] = matrix[30][39] = matrix[7][2] = matrix[7][39] = "*P";
 

@@ -103,6 +103,38 @@ void Game::Render()
 	Window.setView(sf::View(sf::FloatRect(0, 0, CELL * Width, CELL * Height*1.1)));
 	sf::RectangleShape cell(sf::Vector2f(CELL - 1, CELL - 1));
 	sf::CircleShape cell2(1.5) , cell3(4);
+
+	fruit1_Sprite.setPosition(35 * CELL, 38 * CELL * 1.11);
+	fruit1_Sprite.setScale(fruit1_Scale, fruit1_Scale);
+	Window.draw(fruit1_Sprite);
+
+	if (pacman.Get_Lifes() == 1)
+	{
+		PM1_Sprite.setPosition(CELL, 38 * CELL * 1.11);
+		Window.draw(PM1_Sprite);
+	}
+	else if (pacman.Get_Lifes() == 2)
+	{
+		PM1_Sprite.setPosition(CELL, 38 * CELL * 1.11);
+		Window.draw(PM1_Sprite);
+		PM2_Sprite.setPosition(4 * CELL, 38 * CELL * 1.11);
+		Window.draw(PM2_Sprite);
+	}
+	else if (pacman.Get_Lifes() == 3)
+	{
+		PM1_Sprite.setPosition(CELL, 38 * CELL * 1.11);
+		Window.draw(PM1_Sprite);
+		PM2_Sprite.setPosition(4 * CELL, 38 * CELL * 1.11);
+		Window.draw(PM2_Sprite);
+		PM3_Sprite.setPosition(7 * CELL, 38 * CELL * 1.11);
+		Window.draw(PM3_Sprite);
+	}
+
+	Score1_Sprite.setPosition(10, 4);
+	Window.draw(Score1_Sprite);
+	Score2_Sprite.setPosition(25 * CELL, 4);
+	Window.draw(Score2_Sprite);
+
 	for (int height = 0; height < Height; ++height)
 	{
 		for (int width = 0; width < Width; ++width)
@@ -157,37 +189,6 @@ void Game::Render()
 			{
 				Pacman_Sprite.setPosition(pacman.Get_X(), pacman.Get_Y());
 				Window.draw(Pacman_Sprite);
-			}
-			else if (matrix[height][width] == "score1")
-			{
-				Score1_Sprite.setPosition(width,height);
-				Window.draw(Score1_Sprite);
-			}
-			else if (matrix[height][width] == "score2")
-			{
-				Score2_Sprite.setPosition(width*CELL, height);
-				Window.draw(Score2_Sprite);
-			}
-			else if (matrix[height][width] == "fruit1")
-			{
-				fruit1_Sprite.setPosition(width*CELL, height*CELL*1.11);
-				fruit1_Sprite.setScale(fruit1_Scale, fruit1_Scale);
-				Window.draw(fruit1_Sprite);
-			}
-			else if (matrix[height][width] == "PM1" && pacman.Get_Lifes() >= 1)
-			{
-				PM1_Sprite.setPosition(width * CELL, height * CELL * 1.11);
-				Window.draw(PM1_Sprite);
-			}
-			else if (matrix[height][width] == "PM2" && pacman.Get_Lifes() >= 2)
-			{
-				PM2_Sprite.setPosition(width * CELL, height * CELL * 1.11);
-				Window.draw(PM2_Sprite);
-			}
-			else if (matrix[height][width] == "PM3" && pacman.Get_Lifes() == 3)
-			{
-				PM3_Sprite.setPosition(width * CELL, height * CELL * 1.11);
-				Window.draw(PM3_Sprite);
 			}
 			else if (matrix[height][width] == "*")
 			{
