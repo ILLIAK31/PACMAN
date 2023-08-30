@@ -73,9 +73,56 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 	Wall7_Sprite.setTexture(Wall7_Texture);
 	Wall7_Sprite.setScale(0.046f, 0.055f);
 
-	/*if (!Wall8_Texture.loadFromFile("8.png")) {}
+	if (!Wall8_Texture.loadFromFile("8.png")) {}
 	Wall8_Sprite.setTexture(Wall8_Texture);
-	Wall8_Sprite.setScale(0.055f, 0.055f);*/
+	Wall8_Sprite.setScale(0.050f,0.055f);
+
+	if (!Wall9_Texture.loadFromFile("9.png")) {}
+	Wall9_Sprite.setTexture(Wall9_Texture);
+	Wall9_Sprite.setScale(0.025f, 0.035f);
+
+	if (!Wall10_Texture.loadFromFile("10.png")) {}
+	Wall10_Sprite.setTexture(Wall10_Texture);
+	Wall10_Sprite.setScale(0.035f, 0.020f);
+
+	if (!Wall11_Texture.loadFromFile("11.png")) {}
+	Wall11_Sprite.setTexture(Wall11_Texture);
+	Wall11_Sprite.setScale(0.030f, 0.025f);
+
+	if (!Wall12_Texture.loadFromFile("12.png")) {}
+	Wall12_Sprite.setTexture(Wall12_Texture);
+	Wall12_Sprite.setScale(0.030f, 0.025f);
+
+	if (!Wall13_Texture.loadFromFile("13.png")) {}
+	Wall13_Sprite.setTexture(Wall13_Texture);
+	Wall13_Sprite.setScale(0.050f, 0.055f);
+
+	if (!Wall14_Texture.loadFromFile("14.png")) {}
+	Wall14_Sprite.setTexture(Wall14_Texture);
+	Wall14_Sprite.setScale(0.028f, 0.032f);
+
+	if (!Wall15_Texture.loadFromFile("15.png")) {}
+	Wall15_Sprite.setTexture(Wall15_Texture);
+	Wall15_Sprite.setScale(0.030f, 0.032f);
+
+	if (!Wall16_Texture.loadFromFile("16.png")) {}
+	Wall16_Sprite.setTexture(Wall16_Texture);
+	Wall16_Sprite.setScale(0.040f, 0.035f);
+
+	if (!Wall17_Texture.loadFromFile("17.png")) {}
+	Wall17_Sprite.setTexture(Wall17_Texture);
+	Wall17_Sprite.setScale(0.033f, 0.035f);
+
+	//
+	if (!Wall18_Texture.loadFromFile("18.png")) {}
+	Wall18_Sprite.setTexture(Wall18_Texture);
+	Wall18_Sprite.setScale(0.055f, 0.055f);
+
+	if (!Wall19_Texture.loadFromFile("19.png")) {}
+	Wall19_Sprite.setTexture(Wall19_Texture);
+	Wall19_Sprite.setScale(0.055f, 0.055f);
+
+	//
 
 	matrix_setup.Setup_Matrix(matrix);
 
@@ -182,8 +229,63 @@ void Game::Render()
 			}
 			else if (matrix[height][width] == "#8")
 			{
-				Wall8_Sprite.setPosition(width * CELL, height * CELL);
+				Wall8_Sprite.setPosition(width * CELL*0.97, height * CELL*0.96);
 				Window.draw(Wall8_Sprite);
+			}
+			else if (matrix[height][width] == "#9")
+			{
+				Wall9_Sprite.setPosition(width * CELL, height * CELL );
+				Window.draw(Wall9_Sprite);
+			}
+			else if (matrix[height][width] == "#10")
+			{
+				Wall10_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall10_Sprite);
+			}
+			else if (matrix[height][width] == "#11")
+			{
+				Wall11_Sprite.setPosition(width * CELL*0.982, height * CELL);
+				Window.draw(Wall11_Sprite);
+			}
+			else if (matrix[height][width] == "#12")
+			{
+				Wall12_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall12_Sprite);
+			}
+			else if (matrix[height][width] == "#13")
+			{
+				Wall13_Sprite.setPosition(width * CELL * 0.97, height * CELL* 0.96);
+				Window.draw(Wall13_Sprite);
+			}
+			else if (matrix[height][width] == "#14")
+			{
+				Wall14_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall14_Sprite);
+			}
+			else if (matrix[height][width] == "#15")
+			{
+				Wall15_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall15_Sprite);
+			}
+			else if (matrix[height][width] == "#16")
+			{
+				Wall16_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall16_Sprite);
+			}
+			else if (matrix[height][width] == "#17")
+			{
+				Wall17_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall17_Sprite);
+			}
+			else if (matrix[height][width] == "#18")
+			{
+				Wall18_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall18_Sprite);
+			}
+			else if (matrix[height][width] == "#19")
+			{
+				Wall19_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall19_Sprite);
 			}
 			else if (matrix[height][width] == "@")
 			{
