@@ -133,6 +133,38 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 	Wall22_Sprite.setTexture(Wall22_Texture);
 	Wall22_Sprite.setScale(0.04f, 0.04f);
 
+	if (!Wall23_Texture.loadFromFile("23.png")) {}
+	Wall23_Sprite.setTexture(Wall23_Texture);
+	Wall23_Sprite.setScale(0.033f, 0.055f);
+
+	if (!Wall24_Texture.loadFromFile("24.png")) {}
+	Wall24_Sprite.setTexture(Wall24_Texture);
+	Wall24_Sprite.setScale(0.033f, 0.030f);
+
+	if (!Wall25_Texture.loadFromFile("25.png")) {}
+	Wall25_Sprite.setTexture(Wall25_Texture);
+	Wall25_Sprite.setScale(0.030f, 0.032f);
+
+	if (!Wall26_Texture.loadFromFile("26.png")) {}
+	Wall26_Sprite.setTexture(Wall26_Texture);
+	Wall26_Sprite.setScale(0.055f, 0.055f);
+
+	if (!Wall27_Texture.loadFromFile("27.png")) {}
+	Wall27_Sprite.setTexture(Wall27_Texture);
+	Wall27_Sprite.setScale(0.055f, 0.055f);
+
+	if (!Wall28_Texture.loadFromFile("28.png")) {}
+	Wall28_Sprite.setTexture(Wall28_Texture);
+	Wall28_Sprite.setScale(0.04f, 0.04f);
+
+	if (!Wall29_Texture.loadFromFile("29.png")) {}
+	Wall29_Sprite.setTexture(Wall29_Texture);
+	Wall29_Sprite.setScale(0.055f, 0.055f);
+
+	if (!Wall30_Texture.loadFromFile("30.png")) {}
+	Wall30_Sprite.setTexture(Wall30_Texture);
+	Wall30_Sprite.setScale(0.055f, 0.055f);
+
 	matrix_setup.Setup_Matrix(matrix);
 
 	start = std::chrono::high_resolution_clock::now();
@@ -310,6 +342,46 @@ void Game::Render()
 			{
 				Wall22_Sprite.setPosition(width * CELL, height * CELL);
 				Window.draw(Wall22_Sprite);
+			}
+			else if (matrix[height][width] == "#23")
+			{
+				Wall23_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall23_Sprite);
+			}
+			else if (matrix[height][width] == "#24")
+			{
+				Wall24_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall24_Sprite);
+			}
+			else if (matrix[height][width] == "#25")
+			{
+				Wall25_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall25_Sprite);
+			}
+			else if (matrix[height][width] == "#26")
+			{
+				Wall26_Sprite.setPosition(width * CELL * 0.965, height * CELL*0.99);
+				Window.draw(Wall26_Sprite);
+			}
+			else if (matrix[height][width] == "#27")
+			{
+				Wall27_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.99);
+				Window.draw(Wall27_Sprite);
+			}
+			else if (matrix[height][width] == "#28")
+			{
+				Wall28_Sprite.setPosition(width * CELL, height * CELL);
+				Window.draw(Wall28_Sprite);
+			}
+			else if (matrix[height][width] == "#29")
+			{
+				Wall29_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.98);
+				Window.draw(Wall29_Sprite);
+			}
+			else if (matrix[height][width] == "#30")
+			{
+				Wall30_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.98);
+				Window.draw(Wall30_Sprite);
 			}
 			else if (matrix[height][width] == "@")
 			{
