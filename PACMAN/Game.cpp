@@ -6,15 +6,13 @@
 //
 #include <iostream>
 
-Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "Pacman"),matrix(Width, std::vector<std::string>(Height)),pacman(matrix)
+Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "Pacman"),matrix(Width, std::vector<std::string>(Height)),pacman(matrix)
 {
 	Icon.loadFromFile("Icon.png");
 	Window.setSize(sf::Vector2u(CELL * Width * Screen, CELL * Height * Screen * 1.1));
 	Window.setIcon(48, 48, Icon.getPixelsPtr());
 	Window.setFramerateLimit(10);
 
-	while (!menu.Get_Menu_End())
-		menu.Update(Window);
 
 	Setup_Textures();
 
@@ -23,10 +21,16 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 	start = std::chrono::high_resolution_clock::now();
 }
 
-void Game::Run()
+void Game::Run(Menu menu)
 {
 	while (Window.isOpen())
 	{
+		while (!menu.Get_Menu_End() && Menu_status == true)
+		{
+			elapsedSeconds_0 = Clock.getElapsedTime().asSeconds();
+			menu.Update(Window);
+		}
+		Menu_status = false;
 		end = std::chrono::high_resolution_clock::now();
 		duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 		if (duration.count() >= speed + duration0.count())
@@ -90,6 +94,7 @@ void Game::Update()
 {	
 	Render();
 	elapsedSeconds = Clock.getElapsedTime().asSeconds();
+	elapsedSeconds -= elapsedSeconds_0;
 	if (Clock_status == true)
 	{
 		sf::Music Music;
@@ -97,8 +102,11 @@ void Game::Update()
 		else
 		{
 			Music.play();
-			while (elapsedSeconds < 4.5 && Clock_status == true)
+			while (elapsedSeconds < 4.6 && Clock_status == true)
+			{
 				elapsedSeconds = Clock.getElapsedTime().asSeconds();
+				elapsedSeconds -= elapsedSeconds_0;
+			}
 			Music.stop();
 		}
 	}

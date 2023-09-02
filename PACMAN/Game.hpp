@@ -14,8 +14,8 @@ class Game
 {
 	friend class Menu;
 public:
-	Game(Menu menu);
-	void Run();
+	Game();
+	void Run(Menu menu);
 	~Game();
 private:
 	sf::RenderWindow Window;
@@ -32,8 +32,8 @@ private:
 	std::chrono::high_resolution_clock::time_point start, end;
 	std::chrono::milliseconds duration, duration0{ 0 };
 	int speed{1};
-	float fruit1_Scale = 0.04f , cherry_Scale = 0.035f , elapsedSeconds;
+	float fruit1_Scale = 0.04f , cherry_Scale = 0.035f , elapsedSeconds , elapsedSeconds_0;
 	Matrix matrix_setup;
 	sf::Clock Clock;
-	bool Clock_status{true};
+	bool Clock_status{ true }, Menu_status{ true };
 };

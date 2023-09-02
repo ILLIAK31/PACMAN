@@ -4,7 +4,7 @@
 int main()
 {
     Menu menu;
-    Game game(menu);
-    game.Run();
+    Game game;
+    game.Run(menu);
     return 0;
 }
