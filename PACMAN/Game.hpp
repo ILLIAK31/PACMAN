@@ -4,6 +4,7 @@
 #include "Menu.hpp"
 #include "Matrix.hpp"
 
+
 constexpr unsigned char CELL = 8;
 constexpr unsigned char Height = 42;
 constexpr unsigned char Width = 42;
@@ -31,6 +32,8 @@ private:
 	std::chrono::high_resolution_clock::time_point start, end;
 	std::chrono::milliseconds duration, duration0{ 0 };
 	int speed{1};
-	float fruit1_Scale = 0.04f , cherry_Scale = 0.035f;
+	float fruit1_Scale = 0.04f , cherry_Scale = 0.035f , elapsedSeconds;
 	Matrix matrix_setup;
+	sf::Clock Clock;
+	bool Clock_status{true};
 };

@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Game.hpp"
 #include "Pacman.hpp"
 #include <string>
@@ -86,9 +87,23 @@ void Game::Render()
 }
 
 void Game::Update()
-{
-	pacman.Get_X() += 5;	
+{	
 	Render();
+	elapsedSeconds = Clock.getElapsedTime().asSeconds();
+	if (Clock_status == true)
+	{
+		sf::Music Music;
+		if (!Music.openFromFile("sound1.wav")){}
+		else
+		{
+			Music.play();
+			while (elapsedSeconds < 4.5 && Clock_status == true)
+				elapsedSeconds = Clock.getElapsedTime().asSeconds();
+			Music.stop();
+		}
+	}
+	Clock_status = false;
+	pacman.Get_X() += 5;
 }
 
 void Game::Process()
