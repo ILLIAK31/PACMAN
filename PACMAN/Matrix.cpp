@@ -6,10 +6,6 @@ Matrix::~Matrix(){}
 
 void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 {
-	//Fruits
-
-	matrix[38][20] = "cherry";
-
 	//Walls
 
 	for (int height = 0; height < 42; ++height)

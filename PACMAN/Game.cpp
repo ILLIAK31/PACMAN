@@ -25,12 +25,14 @@ void Game::Run(Menu menu)
 {
 	while (Window.isOpen())
 	{
+		//Menu
 		while (!menu.Get_Menu_End() && Menu_status == true)
 		{
 			elapsedSeconds_0 = Clock.getElapsedTime().asSeconds();
 			menu.Update(Window);
 		}
 		Menu_status = false;
+		//Main
 		end = std::chrono::high_resolution_clock::now();
 		duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 		if (duration.count() >= speed + duration0.count())
@@ -93,6 +95,7 @@ void Game::Render()
 void Game::Update()
 {	
 	Render();
+	//beggin sound and pause
 	elapsedSeconds = Clock.getElapsedTime().asSeconds();
 	elapsedSeconds -= elapsedSeconds_0;
 	if (Clock_status == true)
@@ -111,6 +114,20 @@ void Game::Update()
 		}
 	}
 	Clock_status = false;
+	// Cherry logic
+	elapsedSeconds2 = Clock.getElapsedTime().asSeconds();
+	elapsedSeconds2 -= elapsedSeconds_0 + 4.5;
+	if (elapsedSeconds2 >= elapsedSeconds2_0 + 15 && matrix[38][20] == "cherry")
+	{
+		elapsedSeconds2_0 = elapsedSeconds2;
+		matrix[38][20] = "";
+	}
+	else if (elapsedSeconds2 >= elapsedSeconds2_0 + 15 && matrix[38][20] == "")
+	{
+		elapsedSeconds2_0 = elapsedSeconds2;
+		matrix[38][20] = "cherry";
+	}
+	//Pacman move
 	pacman.Get_X() += 5;
 }
 
