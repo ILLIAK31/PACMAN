@@ -15,7 +15,90 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 	while (!menu.Get_Menu_End())
 		menu.Update(Window);
 
-	float Score1_Scale = 0.075f, Score2_Scale = 0.19f, PM_Scale = 0.065f , Wall_Scale = 0.055f;
+	Setup_Textures();
+
+	matrix_setup.Setup_Matrix(matrix);
+
+	start = std::chrono::high_resolution_clock::now();
+}
+
+void Game::Run()
+{
+	while (Window.isOpen())
+	{
+		end = std::chrono::high_resolution_clock::now();
+		duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+		if (duration.count() >= speed + duration0.count())
+		{
+			duration0 = duration;
+			for (int i = 0; i < 10; ++i)
+				Update();
+		}
+	}
+}
+
+void Game::Render()
+{
+	Window.clear();
+	Window.setView(sf::View(sf::FloatRect(0, 0, CELL * Width, CELL * Height*1.1)));
+	sf::RectangleShape cell(sf::Vector2f(CELL - 1, CELL - 1));
+	sf::CircleShape cell2(1.5) , cell3(4);
+
+	fruit1_Sprite.setPosition(35 * CELL, 38 * CELL * 1.11);
+	fruit1_Sprite.setScale(fruit1_Scale, fruit1_Scale);
+	Window.draw(fruit1_Sprite);
+
+	if (pacman.Get_Lifes() == 1)
+	{
+		PM1_Sprite.setPosition(CELL, 38 * CELL * 1.11);
+		Window.draw(PM1_Sprite);
+	}
+	else if (pacman.Get_Lifes() == 2)
+	{
+		PM1_Sprite.setPosition(CELL, 38 * CELL * 1.11);
+		Window.draw(PM1_Sprite);
+		PM2_Sprite.setPosition(4 * CELL, 38 * CELL * 1.11);
+		Window.draw(PM2_Sprite);
+	}
+	else if (pacman.Get_Lifes() == 3)
+	{
+		PM1_Sprite.setPosition(CELL, 38 * CELL * 1.11);
+		Window.draw(PM1_Sprite);
+		PM2_Sprite.setPosition(4 * CELL, 38 * CELL * 1.11);
+		Window.draw(PM2_Sprite);
+		PM3_Sprite.setPosition(7 * CELL, 38 * CELL * 1.11);
+		Window.draw(PM3_Sprite);
+	}
+
+	Score1_Sprite.setPosition(10, 4);
+	Window.draw(Score1_Sprite);
+	Score2_Sprite.setPosition(25 * CELL, 4);
+	Window.draw(Score2_Sprite);
+
+	for (int height = 0; height < Height; ++height)
+	{
+		for (int width = 0; width < Width; ++width)
+		{
+			Print(height, width, cell, cell2, cell3);
+		}
+	}
+	Window.display();
+}
+
+void Game::Update()
+{
+	pacman.Get_X() += 5;	
+	Render();
+}
+
+void Game::Process()
+{
+	//
+}
+
+void Game::Setup_Textures()
+{
+	float Score1_Scale = 0.075f, Score2_Scale = 0.19f, PM_Scale = 0.065f, Wall_Scale = 0.055f;
 
 	if (!Pacman_Texture.loadFromFile("pacman_body2.png")) {}
 	Pacman_Sprite.setTexture(Pacman_Texture);
@@ -75,7 +158,7 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 
 	if (!Wall8_Texture.loadFromFile("8.png")) {}
 	Wall8_Sprite.setTexture(Wall8_Texture);
-	Wall8_Sprite.setScale(0.050f,0.055f);
+	Wall8_Sprite.setScale(0.050f, 0.055f);
 
 	if (!Wall9_Texture.loadFromFile("9.png")) {}
 	Wall9_Sprite.setTexture(Wall9_Texture);
@@ -165,261 +248,189 @@ Game::Game(Menu menu):Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen
 	Wall30_Sprite.setTexture(Wall30_Texture);
 	Wall30_Sprite.setScale(0.055f, 0.055f);
 
-	matrix_setup.Setup_Matrix(matrix);
-
-	start = std::chrono::high_resolution_clock::now();
 }
 
-void Game::Run()
+void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShape& cell2 , sf::CircleShape& cell3)
 {
-	while (Window.isOpen())
+	if (matrix[height][width] == "#")
 	{
-		end = std::chrono::high_resolution_clock::now();
-		duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-		if (duration.count() >= speed + duration0.count())
-		{
-			duration0 = duration;
-			for (int i = 0; i < 10; ++i)
-				Update();
-		}
+		cell.setFillColor(sf::Color::Blue);
+		cell.setPosition(CELL * width, CELL * height);
+		Window.draw(cell);
 	}
-}
-
-void Game::Render()
-{
-	Window.clear();
-	Window.setView(sf::View(sf::FloatRect(0, 0, CELL * Width, CELL * Height*1.1)));
-	sf::RectangleShape cell(sf::Vector2f(CELL - 1, CELL - 1));
-	sf::CircleShape cell2(1.5) , cell3(4);
-
-	fruit1_Sprite.setPosition(35 * CELL, 38 * CELL * 1.11);
-	fruit1_Sprite.setScale(fruit1_Scale, fruit1_Scale);
-	Window.draw(fruit1_Sprite);
-
-	if (pacman.Get_Lifes() == 1)
+	else if (matrix[height][width] == "#1")
 	{
-		PM1_Sprite.setPosition(CELL, 38 * CELL * 1.11);
-		Window.draw(PM1_Sprite);
+		Wall1_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall1_Sprite);
 	}
-	else if (pacman.Get_Lifes() == 2)
+	else if (matrix[height][width] == "#2")
 	{
-		PM1_Sprite.setPosition(CELL, 38 * CELL * 1.11);
-		Window.draw(PM1_Sprite);
-		PM2_Sprite.setPosition(4 * CELL, 38 * CELL * 1.11);
-		Window.draw(PM2_Sprite);
+		Wall2_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall2_Sprite);
 	}
-	else if (pacman.Get_Lifes() == 3)
+	else if (matrix[height][width] == "#3")
 	{
-		PM1_Sprite.setPosition(CELL, 38 * CELL * 1.11);
-		Window.draw(PM1_Sprite);
-		PM2_Sprite.setPosition(4 * CELL, 38 * CELL * 1.11);
-		Window.draw(PM2_Sprite);
-		PM3_Sprite.setPosition(7 * CELL, 38 * CELL * 1.11);
-		Window.draw(PM3_Sprite);
+		Wall3_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall3_Sprite);
 	}
-
-	Score1_Sprite.setPosition(10, 4);
-	Window.draw(Score1_Sprite);
-	Score2_Sprite.setPosition(25 * CELL, 4);
-	Window.draw(Score2_Sprite);
-
-	for (int height = 0; height < Height; ++height)
+	else if (matrix[height][width] == "#4")
 	{
-		for (int width = 0; width < Width; ++width)
-		{
-			if (matrix[height][width] == "#")
-			{
-				cell.setFillColor(sf::Color::Blue);
-				cell.setPosition(CELL*width,CELL*height);
-				Window.draw(cell);
-			}
-			else if (matrix[height][width] == "#1")
-			{
-				Wall1_Sprite.setPosition(width*CELL, height*CELL);
-				Window.draw(Wall1_Sprite);
-			}
-			else if (matrix[height][width] == "#2")
-			{
-				Wall2_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall2_Sprite);
-			}
-			else if (matrix[height][width] == "#3")
-			{
-				Wall3_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall3_Sprite);
-			}
-			else if (matrix[height][width] == "#4")
-			{
-				Wall4_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall4_Sprite);
-			}
-			else if (matrix[height][width] == "#5")
-			{
-				Wall5_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall5_Sprite);
-			}
-			else if (matrix[height][width] == "#6")
-			{
-				Wall6_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall6_Sprite);
-			}
-			else if (matrix[height][width] == "#7")
-			{
-				Wall7_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall7_Sprite);
-			}
-			else if (matrix[height][width] == "#8")
-			{
-				Wall8_Sprite.setPosition(width * CELL*0.97, height * CELL*0.96);
-				Window.draw(Wall8_Sprite);
-			}
-			else if (matrix[height][width] == "#9")
-			{
-				Wall9_Sprite.setPosition(width * CELL, height * CELL );
-				Window.draw(Wall9_Sprite);
-			}
-			else if (matrix[height][width] == "#10")
-			{
-				Wall10_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall10_Sprite);
-			}
-			else if (matrix[height][width] == "#11")
-			{
-				Wall11_Sprite.setPosition(width * CELL*0.982, height * CELL);
-				Window.draw(Wall11_Sprite);
-			}
-			else if (matrix[height][width] == "#12")
-			{
-				Wall12_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall12_Sprite);
-			}
-			else if (matrix[height][width] == "#13")
-			{
-				Wall13_Sprite.setPosition(width * CELL * 0.97, height * CELL* 0.96);
-				Window.draw(Wall13_Sprite);
-			}
-			else if (matrix[height][width] == "#14")
-			{
-				Wall14_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall14_Sprite);
-			}
-			else if (matrix[height][width] == "#15")
-			{
-				Wall15_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall15_Sprite);
-			}
-			else if (matrix[height][width] == "#16")
-			{
-				Wall16_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall16_Sprite);
-			}
-			else if (matrix[height][width] == "#17")
-			{
-				Wall17_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall17_Sprite);
-			}
-			else if (matrix[height][width] == "#18")
-			{
-				Wall18_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall18_Sprite);
-			}
-			else if (matrix[height][width] == "#19")
-			{
-				Wall19_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall19_Sprite);
-			}
-			else if (matrix[height][width] == "#20")
-			{
-				Wall20_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall20_Sprite);
-			}
-			else if (matrix[height][width] == "#21")
-			{
-				Wall21_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall21_Sprite);
-			}
-			else if (matrix[height][width] == "#22")
-			{
-				Wall22_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall22_Sprite);
-			}
-			else if (matrix[height][width] == "#23")
-			{
-				Wall23_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall23_Sprite);
-			}
-			else if (matrix[height][width] == "#24")
-			{
-				Wall24_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall24_Sprite);
-			}
-			else if (matrix[height][width] == "#25")
-			{
-				Wall25_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall25_Sprite);
-			}
-			else if (matrix[height][width] == "#26")
-			{
-				Wall26_Sprite.setPosition(width * CELL * 0.965, height * CELL*0.99);
-				Window.draw(Wall26_Sprite);
-			}
-			else if (matrix[height][width] == "#27")
-			{
-				Wall27_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.99);
-				Window.draw(Wall27_Sprite);
-			}
-			else if (matrix[height][width] == "#28")
-			{
-				Wall28_Sprite.setPosition(width * CELL, height * CELL);
-				Window.draw(Wall28_Sprite);
-			}
-			else if (matrix[height][width] == "#29")
-			{
-				Wall29_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.98);
-				Window.draw(Wall29_Sprite);
-			}
-			else if (matrix[height][width] == "#30")
-			{
-				Wall30_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.98);
-				Window.draw(Wall30_Sprite);
-			}
-			else if (matrix[height][width] == "@")
-			{
-				Pacman_Sprite.setPosition(pacman.Get_X(), pacman.Get_Y());
-				Window.draw(Pacman_Sprite);
-			}
-			else if (matrix[height][width] == "*")
-			{
-				cell2.setFillColor(sf::Color::White);
-				cell2.setPosition(CELL * width*1.013, CELL * height * 1.02);
-				Window.draw(cell2);
-			}
-			else if (matrix[height][width] == "cherry")
-			{
-				fruit1_Sprite.setPosition(width * CELL, height * CELL*0.985);
-				fruit1_Sprite.setScale(cherry_Scale, cherry_Scale);
-				Window.draw(fruit1_Sprite);
-			}
-			else if (matrix[height][width] == "*P")
-			{
-				cell3.setFillColor(sf::Color::White);
-				cell3.setPosition(CELL * width, CELL * height);
-				Window.draw(cell3);
-			}
-		}
+		Wall4_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall4_Sprite);
 	}
-	Window.display();
-}
-
-void Game::Update()
-{
-	pacman.Get_X() += 5;	
-	Render();
-}
-
-void Game::Process()
-{
-	//
+	else if (matrix[height][width] == "#5")
+	{
+		Wall5_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall5_Sprite);
+	}
+	else if (matrix[height][width] == "#6")
+	{
+		Wall6_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall6_Sprite);
+	}
+	else if (matrix[height][width] == "#7")
+	{
+		Wall7_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall7_Sprite);
+	}
+	else if (matrix[height][width] == "#8")
+	{
+		Wall8_Sprite.setPosition(width * CELL * 0.97, height * CELL * 0.96);
+		Window.draw(Wall8_Sprite);
+	}
+	else if (matrix[height][width] == "#9")
+	{
+		Wall9_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall9_Sprite);
+	}
+	else if (matrix[height][width] == "#10")
+	{
+		Wall10_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall10_Sprite);
+	}
+	else if (matrix[height][width] == "#11")
+	{
+		Wall11_Sprite.setPosition(width * CELL * 0.982, height * CELL);
+		Window.draw(Wall11_Sprite);
+	}
+	else if (matrix[height][width] == "#12")
+	{
+		Wall12_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall12_Sprite);
+	}
+	else if (matrix[height][width] == "#13")
+	{
+		Wall13_Sprite.setPosition(width * CELL * 0.97, height * CELL * 0.96);
+		Window.draw(Wall13_Sprite);
+	}
+	else if (matrix[height][width] == "#14")
+	{
+		Wall14_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall14_Sprite);
+	}
+	else if (matrix[height][width] == "#15")
+	{
+		Wall15_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall15_Sprite);
+	}
+	else if (matrix[height][width] == "#16")
+	{
+		Wall16_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall16_Sprite);
+	}
+	else if (matrix[height][width] == "#17")
+	{
+		Wall17_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall17_Sprite);
+	}
+	else if (matrix[height][width] == "#18")
+	{
+		Wall18_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall18_Sprite);
+	}
+	else if (matrix[height][width] == "#19")
+	{
+		Wall19_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall19_Sprite);
+	}
+	else if (matrix[height][width] == "#20")
+	{
+		Wall20_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall20_Sprite);
+	}
+	else if (matrix[height][width] == "#21")
+	{
+		Wall21_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall21_Sprite);
+	}
+	else if (matrix[height][width] == "#22")
+	{
+		Wall22_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall22_Sprite);
+	}
+	else if (matrix[height][width] == "#23")
+	{
+		Wall23_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall23_Sprite);
+	}
+	else if (matrix[height][width] == "#24")
+	{
+		Wall24_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall24_Sprite);
+	}
+	else if (matrix[height][width] == "#25")
+	{
+		Wall25_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall25_Sprite);
+	}
+	else if (matrix[height][width] == "#26")
+	{
+		Wall26_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.99);
+		Window.draw(Wall26_Sprite);
+	}
+	else if (matrix[height][width] == "#27")
+	{
+		Wall27_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.99);
+		Window.draw(Wall27_Sprite);
+	}
+	else if (matrix[height][width] == "#28")
+	{
+		Wall28_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(Wall28_Sprite);
+	}
+	else if (matrix[height][width] == "#29")
+	{
+		Wall29_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.98);
+		Window.draw(Wall29_Sprite);
+	}
+	else if (matrix[height][width] == "#30")
+	{
+		Wall30_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.98);
+		Window.draw(Wall30_Sprite);
+	}
+	else if (matrix[height][width] == "@")
+	{
+		Pacman_Sprite.setPosition(pacman.Get_X(), pacman.Get_Y());
+		Window.draw(Pacman_Sprite);
+	}
+	else if (matrix[height][width] == "*")
+	{
+		cell2.setFillColor(sf::Color::White);
+		cell2.setPosition(CELL * width * 1.013, CELL * height * 1.02);
+		Window.draw(cell2);
+	}
+	else if (matrix[height][width] == "cherry")
+	{
+		fruit1_Sprite.setPosition(width * CELL, height * CELL * 0.985);
+		fruit1_Sprite.setScale(cherry_Scale, cherry_Scale);
+		Window.draw(fruit1_Sprite);
+	}
+	else if (matrix[height][width] == "*P")
+	{
+		cell3.setFillColor(sf::Color::White);
+		cell3.setPosition(CELL * width, CELL * height);
+		Window.draw(cell3);
+	}
 }
 
 Game::~Game(){}
