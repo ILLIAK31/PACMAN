@@ -31,7 +31,7 @@ private:
 	Pacman pacman;
 	std::chrono::high_resolution_clock::time_point start, end;
 	std::chrono::milliseconds duration, duration0{ 0 };
-	int speed{1};
+	int speed{130};
 	float fruit1_Scale = 0.04f, cherry_Scale = 0.035f, elapsedSeconds, elapsedSeconds_0, elapsedSeconds2, elapsedSeconds2_0{0};
 	Matrix matrix_setup;
 	sf::Clock Clock;

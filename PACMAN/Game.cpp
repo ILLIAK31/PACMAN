@@ -38,8 +38,7 @@ void Game::Run(Menu menu)
 		if (duration.count() >= speed + duration0.count())
 		{
 			duration0 = duration;
-			for (int i = 0; i < 10; ++i)
-				Update();
+			Update();
 		}
 	}
 }
@@ -128,7 +127,7 @@ void Game::Update()
 		matrix[38][20] = "cherry";
 	}
 	//Pacman move
-	pacman.Get_X() += 5;
+	pacman.Get_X() += 1;
 }
 
 void Game::Process()
@@ -142,7 +141,7 @@ void Game::Setup_Textures()
 
 	if (!Pacman_Texture.loadFromFile("pacman_body2.png")) {}
 	Pacman_Sprite.setTexture(Pacman_Texture);
-	float Pacman_Scale = 0.085f;
+	float Pacman_Scale = 0.075f;
 	Pacman_Sprite.setScale(Pacman_Scale, Pacman_Scale);
 
 	if (!Score1_Texture.loadFromFile("score1.png")) {}
@@ -450,7 +449,7 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	}
 	else if (matrix[height][width] == "@")
 	{
-		Pacman_Sprite.setPosition(pacman.Get_X(), pacman.Get_Y());
+		Pacman_Sprite.setPosition(pacman.Get_X()*CELL, pacman.Get_Y()*CELL * 0.975);
 		Window.draw(Pacman_Sprite);
 	}
 	else if (matrix[height][width] == "*")

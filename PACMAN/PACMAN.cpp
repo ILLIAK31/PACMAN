@@ -1,8 +1,8 @@
 #include "Pacman.hpp"
 
-Pacman::Pacman(std::vector<std::vector<std::string>>& matrix):x(0),y(0)
+Pacman::Pacman(std::vector<std::vector<std::string>>& matrix):x(20),y(28)
 {
-	matrix[0][0] = '@';
+	matrix[this->x][this->y] = '@';
 }
 
 int& Pacman::Get_X()
