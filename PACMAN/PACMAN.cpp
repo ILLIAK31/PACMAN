@@ -1,7 +1,5 @@
 #include "Pacman.hpp"
 
-
-#include <iostream>
 Pacman::Pacman(std::vector<std::vector<std::string>>& matrix):x(20),y(28){}
 
 int& Pacman::Get_X()
@@ -21,7 +19,7 @@ int& Pacman::Get_Lifes()
 
 bool Pacman::Check_collision_right(std::vector<std::vector<std::string>>& matrix)
 {
-	if (((matrix[this->x + 4][this->y] == " ")||(matrix[this->x +4][this->y] == "*")) && ((matrix[this->x + 4][this->y-1] == " ") || (matrix[this->x + 4][this->y-1] == "*")) && ((matrix[this->x + 4][this->y+1] == " ") || (matrix[this->x + 4][this->y+1] == "*")))
+	if (((matrix[this->y][this->x + 2] == " ")||(matrix[this->y][this->x+2] == "*")) && (matrix[this->y -1][this->x+2] == " ") && (matrix[this->y + 1][this->x+2] == " "))
 		return true;
 	return false;
 }

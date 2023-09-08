@@ -33,7 +33,7 @@ void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 				matrix[height][width] = "#1";
 	}
 
-	//I dont give a f*ck what is that
+	//I dont give a fuck what is that
 
 	matrix[21][0] = matrix[22][0] = matrix[23][0] = matrix[21][41] = matrix[22][41] = matrix[23][41] = "";
 

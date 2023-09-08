@@ -19,15 +19,15 @@ Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "P
 
 	start = std::chrono::high_resolution_clock::now();
 
-	matrix[pacman.Get_X()][pacman.Get_Y()] = '@';
-	matrix[pacman.Get_X() - 1][pacman.Get_Y()] = '.@';
-	matrix[pacman.Get_X() - 1][pacman.Get_Y() - 1] = '.@';
-	matrix[pacman.Get_X()][pacman.Get_Y() - 1] = '.@';
-	matrix[pacman.Get_X() + 1][pacman.Get_Y() - 1] = '.@';
-	matrix[pacman.Get_X() + 1][pacman.Get_Y()] = '.@';
-	matrix[pacman.Get_X() + 1][pacman.Get_Y() + 1] = '.@';
-	matrix[pacman.Get_X()][pacman.Get_Y() + 1] = '.@';
-	matrix[pacman.Get_X() - 1][pacman.Get_Y() + 1] = '.@';
+	matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+	matrix[pacman.Get_Y()][pacman.Get_X() - 1] = '.@';
+	matrix[pacman.Get_Y() - 1][pacman.Get_X() - 1] = '.@';
+	matrix[pacman.Get_Y() - 1][pacman.Get_X()] = '.@';
+	matrix[pacman.Get_Y() - 1][pacman.Get_X() + 1] = '.@';
+	matrix[pacman.Get_Y()][pacman.Get_X() + 1] = '.@';
+	matrix[pacman.Get_Y() + 1][pacman.Get_X() + 1] = '.@';
+	matrix[pacman.Get_Y() + 1][pacman.Get_X()] = '.@';
+	matrix[pacman.Get_Y() + 1][pacman.Get_X() - 1] = '.@';
 }
 
 void Game::Run(Menu menu)
@@ -133,7 +133,7 @@ void Game::Update()
 		elapsedSeconds2_0 = elapsedSeconds2;
 		matrix[38][20] = "";
 	}
-	else if (elapsedSeconds2 >= elapsedSeconds2_0 + 15 && matrix[38][20] == "")
+	else if (elapsedSeconds2 >= elapsedSeconds2_0 + 15 && matrix[38][20] == " ")
 	{
 		elapsedSeconds2_0 = elapsedSeconds2;
 		matrix[38][20] = "cherry";
@@ -141,25 +141,25 @@ void Game::Update()
 	//Pacman move
 	if (pacman.Direction == 'R'&&pacman.Check_collision_right(matrix))
 	{
-		matrix[pacman.Get_X()][pacman.Get_Y()] = " ";
-		matrix[pacman.Get_X() - 1][pacman.Get_Y()] = " ";
-		matrix[pacman.Get_X() - 1][pacman.Get_Y() - 1] = " ";
-		matrix[pacman.Get_X()][pacman.Get_Y() - 1] = " ";
-		matrix[pacman.Get_X() + 1][pacman.Get_Y() - 1] = " ";
-		matrix[pacman.Get_X() + 1][pacman.Get_Y()] = " ";
-		matrix[pacman.Get_X() + 1][pacman.Get_Y() + 1] = " ";
-		matrix[pacman.Get_X()][pacman.Get_Y() + 1] = " ";
-		matrix[pacman.Get_X() - 1][pacman.Get_Y() + 1] = " ";
+		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
+		matrix[pacman.Get_Y()][pacman.Get_X() - 1] = " ";
+		matrix[pacman.Get_Y() - 1][pacman.Get_X() - 1] = " ";
+		matrix[pacman.Get_Y() - 1][pacman.Get_X()] = " ";
+		matrix[pacman.Get_Y() - 1][pacman.Get_X() + 1] = " ";
+		matrix[pacman.Get_Y()][pacman.Get_X() + 1] = " ";
+		matrix[pacman.Get_Y() + 1][pacman.Get_X() + 1] = " ";
+		matrix[pacman.Get_Y() + 1][pacman.Get_X()] = " ";
+		matrix[pacman.Get_Y() + 1][pacman.Get_X() - 1] = " ";
 		pacman.Get_X() += 1;
-		matrix[pacman.Get_X()][pacman.Get_Y()] = '@';
-		matrix[pacman.Get_X() - 1][pacman.Get_Y()] = '.@';
-		matrix[pacman.Get_X() - 1][pacman.Get_Y() - 1] = '.@';
-		matrix[pacman.Get_X()][pacman.Get_Y() - 1] = '.@';
-		matrix[pacman.Get_X() + 1][pacman.Get_Y() - 1] = '.@';
-		matrix[pacman.Get_X() + 1][pacman.Get_Y()] = '.@';
-		matrix[pacman.Get_X() + 1][pacman.Get_Y() + 1] = '.@';
-		matrix[pacman.Get_X()][pacman.Get_Y() + 1] = '.@';
-		matrix[pacman.Get_X() - 1][pacman.Get_Y() + 1] = '.@';
+		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+		matrix[pacman.Get_Y()][pacman.Get_X() - 1] = '.@';
+		matrix[pacman.Get_Y() - 1][pacman.Get_X() - 1] = '.@';
+		matrix[pacman.Get_Y() - 1][pacman.Get_X()] = '.@';
+		matrix[pacman.Get_Y() - 1][pacman.Get_X() + 1] = '.@';
+		matrix[pacman.Get_Y()][pacman.Get_X() + 1] = '.@';
+		matrix[pacman.Get_Y() + 1][pacman.Get_X() + 1] = '.@';
+		matrix[pacman.Get_Y() + 1][pacman.Get_X()] = '.@';
+		matrix[pacman.Get_Y() + 1][pacman.Get_X() - 1] = '.@';
 	}
 }
 
@@ -493,12 +493,12 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	}
 	else if (matrix[height][width] == "@" && pacman.Direction == 'C')
 	{
-		Pacman0_Sprite.setPosition(pacman.Get_X() * CELL* 0.99, pacman.Get_Y() * CELL * 0.975);
+		Pacman0_Sprite.setPosition(pacman.Get_X() * CELL*0.989, pacman.Get_Y() * CELL * 0.975);
 		Window.draw(Pacman0_Sprite);
 	}
 	else if (matrix[height][width] == "@" && pacman.Direction == 'R')
 	{
-		Pacman1_Sprite.setPosition(pacman.Get_X()*CELL*0.99, pacman.Get_Y()*CELL * 0.975);
+		Pacman1_Sprite.setPosition(pacman.Get_X()*CELL*0.989, pacman.Get_Y()*CELL * 0.975);
 		Window.draw(Pacman1_Sprite);
 	}
 	else if (matrix[height][width] == "*")
