@@ -13,12 +13,21 @@ Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "P
 	Window.setIcon(48, 48, Icon.getPixelsPtr());
 	Window.setFramerateLimit(10);
 
-
 	Setup_Textures();
 
 	matrix_setup.Setup_Matrix(matrix);
 
 	start = std::chrono::high_resolution_clock::now();
+
+	matrix[pacman.Get_X()][pacman.Get_Y()] = '@';
+	matrix[pacman.Get_X() - 1][pacman.Get_Y()] = '.@';
+	matrix[pacman.Get_X() - 1][pacman.Get_Y() - 1] = '.@';
+	matrix[pacman.Get_X()][pacman.Get_Y() - 1] = '.@';
+	matrix[pacman.Get_X() + 1][pacman.Get_Y() - 1] = '.@';
+	matrix[pacman.Get_X() + 1][pacman.Get_Y()] = '.@';
+	matrix[pacman.Get_X() + 1][pacman.Get_Y() + 1] = '.@';
+	matrix[pacman.Get_X()][pacman.Get_Y() + 1] = '.@';
+	matrix[pacman.Get_X() - 1][pacman.Get_Y() + 1] = '.@';
 }
 
 void Game::Run(Menu menu)
@@ -38,8 +47,11 @@ void Game::Run(Menu menu)
 		if (duration.count() >= speed + duration0.count())
 		{
 			duration0 = duration;
+			Process();
 			Update();
+			Process();
 		}
+
 	}
 }
 
@@ -127,22 +139,54 @@ void Game::Update()
 		matrix[38][20] = "cherry";
 	}
 	//Pacman move
-	pacman.Get_X() += 1;
+	if (pacman.Direction == 'R'&&pacman.Check_collision_right(matrix))
+	{
+		matrix[pacman.Get_X()][pacman.Get_Y()] = " ";
+		matrix[pacman.Get_X() - 1][pacman.Get_Y()] = " ";
+		matrix[pacman.Get_X() - 1][pacman.Get_Y() - 1] = " ";
+		matrix[pacman.Get_X()][pacman.Get_Y() - 1] = " ";
+		matrix[pacman.Get_X() + 1][pacman.Get_Y() - 1] = " ";
+		matrix[pacman.Get_X() + 1][pacman.Get_Y()] = " ";
+		matrix[pacman.Get_X() + 1][pacman.Get_Y() + 1] = " ";
+		matrix[pacman.Get_X()][pacman.Get_Y() + 1] = " ";
+		matrix[pacman.Get_X() - 1][pacman.Get_Y() + 1] = " ";
+		pacman.Get_X() += 1;
+		matrix[pacman.Get_X()][pacman.Get_Y()] = '@';
+		matrix[pacman.Get_X() - 1][pacman.Get_Y()] = '.@';
+		matrix[pacman.Get_X() - 1][pacman.Get_Y() - 1] = '.@';
+		matrix[pacman.Get_X()][pacman.Get_Y() - 1] = '.@';
+		matrix[pacman.Get_X() + 1][pacman.Get_Y() - 1] = '.@';
+		matrix[pacman.Get_X() + 1][pacman.Get_Y()] = '.@';
+		matrix[pacman.Get_X() + 1][pacman.Get_Y() + 1] = '.@';
+		matrix[pacman.Get_X()][pacman.Get_Y() + 1] = '.@';
+		matrix[pacman.Get_X() - 1][pacman.Get_Y() + 1] = '.@';
+	}
 }
 
 void Game::Process()
 {
-	//
+	sf::Event Event;
+	while (Window.pollEvent(Event))
+		if (Event.type == sf::Event::Closed)
+			Window.close();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		pacman.Direction = 'R';
+	}
 }
 
 void Game::Setup_Textures()
 {
 	float Score1_Scale = 0.075f, Score2_Scale = 0.19f, PM_Scale = 0.065f, Wall_Scale = 0.055f;
+	float  Pacman0_Scale = 0.075f , Pacman1_Scale = 0.075f;
 
-	if (!Pacman_Texture.loadFromFile("pacman_body2.png")) {}
-	Pacman_Sprite.setTexture(Pacman_Texture);
-	float Pacman_Scale = 0.075f;
-	Pacman_Sprite.setScale(Pacman_Scale, Pacman_Scale);
+	if (!Pacman0_Texture.loadFromFile("pacman_body0.png")) {}
+	Pacman0_Sprite.setTexture(Pacman0_Texture);
+	Pacman0_Sprite.setScale(Pacman0_Scale, Pacman0_Scale);
+
+	if (!Pacman1_Texture.loadFromFile("pacman_body1.png")) {}
+	Pacman1_Sprite.setTexture(Pacman1_Texture);
+	Pacman1_Sprite.setScale(Pacman1_Scale, Pacman1_Scale);
 
 	if (!Score1_Texture.loadFromFile("score1.png")) {}
 	Score1_Sprite.setTexture(Score1_Texture);
@@ -447,13 +491,19 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		Wall30_Sprite.setPosition(width * CELL * 0.965, height * CELL * 0.98);
 		Window.draw(Wall30_Sprite);
 	}
-	else if (matrix[height][width] == "@")
+	else if (matrix[height][width] == "@" && pacman.Direction == 'C')
 	{
-		Pacman_Sprite.setPosition(pacman.Get_X()*CELL, pacman.Get_Y()*CELL * 0.975);
-		Window.draw(Pacman_Sprite);
+		Pacman0_Sprite.setPosition(pacman.Get_X() * CELL* 0.99, pacman.Get_Y() * CELL * 0.975);
+		Window.draw(Pacman0_Sprite);
+	}
+	else if (matrix[height][width] == "@" && pacman.Direction == 'R')
+	{
+		Pacman1_Sprite.setPosition(pacman.Get_X()*CELL*0.99, pacman.Get_Y()*CELL * 0.975);
+		Window.draw(Pacman1_Sprite);
 	}
 	else if (matrix[height][width] == "*")
 	{
+
 		cell2.setFillColor(sf::Color::White);
 		cell2.setPosition(CELL * width * 1.013, CELL * height * 1.02);
 		Window.draw(cell2);

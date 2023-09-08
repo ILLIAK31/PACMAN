@@ -11,6 +11,12 @@ void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 	for (int height = 0; height < 42; ++height)
 	{
 		for (int width = 0; width < 42; ++width)
+			matrix[height][width] = " ";
+	}
+
+	for (int height = 0; height < 42; ++height)
+	{
+		for (int width = 0; width < 42; ++width)
 			if (height == 5 && width >= 0 && width <= 42)
 				matrix[height][width] = "#1";
 	}
