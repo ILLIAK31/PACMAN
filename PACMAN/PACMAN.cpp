@@ -38,4 +38,11 @@ bool Pacman::Check_collision_up(std::vector<std::vector<std::string>>& matrix)
 	return false;
 }
 
+bool Pacman::Check_collision_down(std::vector<std::vector<std::string>>& matrix)
+{
+	if (((matrix[this->y + 2][this->x] == " ") || (matrix[this->y + 2][this->x] == "*") || (matrix[this->y + 2][this->x] == "*P")) && ((matrix[this->y + 2][this->x - 1] == " ") || (matrix[this->y + 2][this->x - 1] == "*") || (matrix[this->y + 2][this->x - 1] == "*P")) && ((matrix[this->y + 2][this->x + 1] == " ") || (matrix[this->y + 2][this->x + 1] == "*") || (matrix[this->y + 2][this->x + 1] == "*P")))
+		return true;
+	return false;
+}
+
 Pacman::~Pacman(){}

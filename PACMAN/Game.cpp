@@ -169,6 +169,10 @@ void Game::Process()
 	{
 		pacman.Direction = 'U';
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && pacman.Check_collision_down(matrix))
+	{
+		pacman.Direction = 'D';
+	}
 }
 
 void Game::Setup_Textures()
@@ -191,6 +195,10 @@ void Game::Setup_Textures()
 	if (!Pacman3_Texture.loadFromFile("pacman_body3.png")) {}
 	Pacman3_Sprite.setTexture(Pacman3_Texture);
 	Pacman3_Sprite.setScale(Pacman1_Scale, Pacman1_Scale);
+
+	if (!Pacman4_Texture.loadFromFile("pacman_body4.png")) {}
+	Pacman4_Sprite.setTexture(Pacman4_Texture);
+	Pacman4_Sprite.setScale(Pacman1_Scale, Pacman1_Scale);
 
 	if (!Score1_Texture.loadFromFile("score1.png")) {}
 	Score1_Sprite.setTexture(Score1_Texture);
@@ -561,10 +569,32 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	}
 	else if (matrix[height][width] == "@" && pacman.Direction == 'U')
 	{
-		pacman_x = (pacman.Get_X() <= 20) ? 0.915 : 0.978;
-		Pacman3_Sprite.setPosition(pacman.Get_X() * CELL*pacman_x, pacman.Get_Y() * CELL * 0.92);
+		pacman_x = 1;
+		pacman_y = 0.92;
+		if (pacman.Get_X() == 13)
+		{
+			pacman_x = 0.947;
+			pacman_y = 0.955;
+		}
+		else if (pacman.Get_X() == 28)
+		{
+			pacman_x = 0.978;
+			pacman_y = 0.955;
+		}
+		else if (pacman.Get_X() <= 20)
+			pacman_x = 0.915;
+		else if (pacman.Get_X() > 20)
+			pacman_x = 0.978;
+		Pacman3_Sprite.setPosition(pacman.Get_X() * CELL*pacman_x, pacman.Get_Y() * CELL * pacman_y);
 		Window.draw(Pacman3_Sprite);
 	}
+	else if (matrix[height][width] == "@" && pacman.Direction == 'D')
+	{
+		pacman_x = 0.98;
+		pacman_y = 0.98;
+		Pacman4_Sprite.setPosition(pacman.Get_X() * CELL * pacman_x, pacman.Get_Y() * CELL * pacman_y);
+		Window.draw(Pacman4_Sprite);
+		}
 	else if (matrix[height][width] == "*")
 	{
 
