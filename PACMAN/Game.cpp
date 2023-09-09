@@ -149,6 +149,13 @@ void Game::Update()
 		pacman.Get_Y() -= 1;
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
 	}
+	else if (pacman.Direction == 'D' && pacman.Check_collision_down(matrix))
+	{
+		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
+		pacman.Get_Y() += 1;
+		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+	}
+
 }
 
 void Game::Process()
