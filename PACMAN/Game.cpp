@@ -183,6 +183,28 @@ void Game::Update()
 		matrix[pacman.Get_Y() + 1][pacman.Get_X()] = '.@';
 		matrix[pacman.Get_Y() + 1][pacman.Get_X() - 1] = '.@';
 	}
+	else if (pacman.Direction == 'U' && pacman.Check_collision_up(matrix))
+	{
+		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
+		matrix[pacman.Get_Y()][pacman.Get_X() - 1] = " ";
+		matrix[pacman.Get_Y() - 1][pacman.Get_X() - 1] = " ";
+		matrix[pacman.Get_Y() - 1][pacman.Get_X()] = " ";
+		matrix[pacman.Get_Y() - 1][pacman.Get_X() + 1] = " ";
+		matrix[pacman.Get_Y()][pacman.Get_X() + 1] = " ";
+		matrix[pacman.Get_Y() + 1][pacman.Get_X() + 1] = " ";
+		matrix[pacman.Get_Y() + 1][pacman.Get_X()] = " ";
+		matrix[pacman.Get_Y() + 1][pacman.Get_X() - 1] = " ";
+		pacman.Get_Y() -= 1;
+		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+		matrix[pacman.Get_Y()][pacman.Get_X() - 1] = '.@';
+		matrix[pacman.Get_Y() - 1][pacman.Get_X() - 1] = '.@';
+		matrix[pacman.Get_Y() - 1][pacman.Get_X()] = '.@';
+		matrix[pacman.Get_Y() - 1][pacman.Get_X() + 1] = '.@';
+		matrix[pacman.Get_Y()][pacman.Get_X() + 1] = '.@';
+		matrix[pacman.Get_Y() + 1][pacman.Get_X() + 1] = '.@';
+		matrix[pacman.Get_Y() + 1][pacman.Get_X()] = '.@';
+		matrix[pacman.Get_Y() + 1][pacman.Get_X() - 1] = '.@';
+	}
 }
 
 void Game::Process()
@@ -198,6 +220,10 @@ void Game::Process()
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && pacman.Check_collision_left(matrix))
 	{
 		pacman.Direction = 'L';
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && pacman.Check_collision_up(matrix))
+	{
+		pacman.Direction = 'U';
 	}
 }
 
@@ -217,6 +243,10 @@ void Game::Setup_Textures()
 	if (!Pacman2_Texture.loadFromFile("pacman_body2.png")) {}
 	Pacman2_Sprite.setTexture(Pacman2_Texture);
 	Pacman2_Sprite.setScale(Pacman1_Scale, Pacman1_Scale);
+
+	if (!Pacman3_Texture.loadFromFile("pacman_body3.png")) {}
+	Pacman3_Sprite.setTexture(Pacman3_Texture);
+	Pacman3_Sprite.setScale(Pacman1_Scale, Pacman1_Scale);
 
 	if (!Score1_Texture.loadFromFile("score1.png")) {}
 	Score1_Sprite.setTexture(Score1_Texture);
@@ -535,6 +565,12 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	{
 		Pacman2_Sprite.setPosition(pacman.Get_X() * CELL*0.915, pacman.Get_Y() * CELL * 0.975);
 		Window.draw(Pacman2_Sprite);
+	}
+	else if (matrix[height][width] == "@" && pacman.Direction == 'U')
+	{
+		auto pacman_x = (pacman.Get_X() <= 20) ? 0.915 : 0.978;
+		Pacman3_Sprite.setPosition(pacman.Get_X() * CELL*pacman_x, pacman.Get_Y() * CELL * 0.92);
+		Window.draw(Pacman3_Sprite);
 	}
 	else if (matrix[height][width] == "*")
 	{

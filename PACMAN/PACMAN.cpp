@@ -19,14 +19,21 @@ int& Pacman::Get_Lifes()
 
 bool Pacman::Check_collision_right(std::vector<std::vector<std::string>>& matrix)
 {
-	if (((matrix[this->y][this->x + 2] == " ")||(matrix[this->y][this->x+2] == "*")) && (matrix[this->y -1][this->x+2] == " ") && (matrix[this->y + 1][this->x+2] == " "))
+	if (((matrix[this->y][this->x + 2] == " ")||(matrix[this->y][this->x+2] == "*")) && ((matrix[this->y -1][this->x+2] == " ")|| (matrix[this->y - 1][this->x + 2] == "*")) && ((matrix[this->y + 1][this->x+2] == " ")|| (matrix[this->y + 1][this->x + 2] == "*")))
 		return true;
 	return false;
 }
 
 bool Pacman::Check_collision_left(std::vector<std::vector<std::string>>& matrix)
 {
-	if (((matrix[this->y][this->x - 2] == " ") || (matrix[this->y][this->x - 2] == "*")) && (matrix[this->y - 1][this->x - 2] == " ") && (matrix[this->y + 1][this->x - 2] == " "))
+	if (((matrix[this->y][this->x - 2] == " ") || (matrix[this->y][this->x - 2] == "*")) && ((matrix[this->y - 1][this->x - 2] == " ")|| (matrix[this->y - 1][this->x - 2] == "*")) && ((matrix[this->y + 1][this->x - 2] == " ")|| (matrix[this->y + 1][this->x - 2] == "*")))
+		return true;
+	return false;
+}
+
+bool Pacman::Check_collision_up(std::vector<std::vector<std::string>>& matrix)
+{
+	if (((matrix[this->y-2][this->x] == " ") || (matrix[this->y-2][this->x] == "*")) && ((matrix[this->y - 2][this->x - 1] == " ")|| (matrix[this->y - 2][this->x - 1] == "*")) && ((matrix[this->y - 2][this->x + 1] == " ")|| (matrix[this->y - 2][this->x + 1] == "*")))
 		return true;
 	return false;
 }
