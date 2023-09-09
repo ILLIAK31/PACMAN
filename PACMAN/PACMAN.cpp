@@ -24,4 +24,11 @@ bool Pacman::Check_collision_right(std::vector<std::vector<std::string>>& matrix
 	return false;
 }
 
+bool Pacman::Check_collision_left(std::vector<std::vector<std::string>>& matrix)
+{
+	if (((matrix[this->y][this->x - 2] == " ") || (matrix[this->y][this->x - 2] == "*")) && (matrix[this->y - 1][this->x - 2] == " ") && (matrix[this->y + 1][this->x - 2] == " "))
+		return true;
+	return false;
+}
+
 Pacman::~Pacman(){}
