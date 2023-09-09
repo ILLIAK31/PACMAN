@@ -20,14 +20,6 @@ Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "P
 	start = std::chrono::high_resolution_clock::now();
 
 	matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
-	matrix[pacman.Get_Y()][pacman.Get_X() - 1] = '.@';
-	matrix[pacman.Get_Y() - 1][pacman.Get_X() - 1] = '.@';
-	matrix[pacman.Get_Y() - 1][pacman.Get_X()] = '.@';
-	matrix[pacman.Get_Y() - 1][pacman.Get_X() + 1] = '.@';
-	matrix[pacman.Get_Y()][pacman.Get_X() + 1] = '.@';
-	matrix[pacman.Get_Y() + 1][pacman.Get_X() + 1] = '.@';
-	matrix[pacman.Get_Y() + 1][pacman.Get_X()] = '.@';
-	matrix[pacman.Get_Y() + 1][pacman.Get_X() - 1] = '.@';
 }
 
 void Game::Run(Menu menu)
@@ -546,7 +538,7 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		}
 		else if (pacman.Get_X() <= 20 && pacman.Get_Y() > 10 && pacman.Get_Y() <= 20)
 		{
-			pacman_x = 0.87;
+			pacman_x = 0.9;
 			pacman_y = 0.95;
 		}
 		else if (pacman.Get_X() > 20 && pacman.Get_Y() > 10 && pacman.Get_Y() <= 20)
@@ -558,6 +550,11 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		{
 			pacman_x = 0.97;
 			pacman_y = 0.9;
+		}
+		else if (pacman.Get_X() > 20 && pacman.Get_Y() >= 20)
+		{
+			pacman_x = 0.95;
+			pacman_y = 0.975;
 		}
 		Pacman2_Sprite.setPosition(pacman.Get_X() * CELL*pacman_x, pacman.Get_Y() * CELL * pacman_y);
 		Window.draw(Pacman2_Sprite);
