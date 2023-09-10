@@ -683,6 +683,10 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 			pacman_x = 0.7;
 			pacman_y = 0.96;
 		}
+		else if (pacman.Get_X() == 23 && pacman.Get_Y() >= 18 && pacman.Get_Y() <= 20)
+		{
+			pacman_y = 0.97;
+		}
 		else if (pacman.Get_X() == 9)
 		{
 			pacman_x = 0.91;
@@ -700,6 +704,10 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		else if (pacman.Get_X() == 13)
 		{
 			pacman_x = 0.947;
+		}
+		else if (pacman.Get_X() == 28)
+		{
+			pacman_x = 0.975;
 		}
 		Pacman4_Sprite.setPosition(pacman.Get_X() * CELL * pacman_x, pacman.Get_Y() * CELL * pacman_y);
 		Window.draw(Pacman4_Sprite);
