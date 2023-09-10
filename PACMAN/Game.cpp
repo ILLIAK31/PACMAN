@@ -135,12 +135,16 @@ void Game::Update()
 	{
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
 		pacman.Get_X() += 1;
+		if (pacman.Get_Y() == 22 && pacman.Get_X() + 2 >= 41)
+			pacman.Get_X() = 0;
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
 	}
 	else if (pacman.Direction == 'L' && pacman.Check_collision_left(matrix))
 	{
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
 		pacman.Get_X() -= 1;
+		if (pacman.Get_Y() == 22 && pacman.Get_X() - 2 <= 0)
+			pacman.Get_X() = 41;
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
 	}
 	else if (pacman.Direction == 'U' && pacman.Check_collision_up(matrix))
