@@ -555,6 +555,7 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		}
 		else if (pacman.Get_Y() == 22 && pacman.Get_X() > 20)
 		{
+			pacman_x = 1.03;
 			pacman_y = 0.965;
 		}
 		else if (pacman.Get_Y() == 22 && pacman.Get_X() < 20)
@@ -626,6 +627,7 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		}
 		else if (pacman.Get_Y() == 22 && pacman.Get_X() <= 20)
 		{
+			pacman_x = 0.75;
 			pacman_y = 0.965;
 		}
 		else if (pacman.Get_Y() == 18 && pacman.Get_X() > 20)
