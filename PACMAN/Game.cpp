@@ -47,7 +47,7 @@ void Game::Run(Menu menu)
 			//Ghost mode
 			ghost_mode_end = Clock.getElapsedTime().asSeconds();
 			ghost_mode_end -= 5.2;
-			if (pacman.Get_ghost_hunter_mode() == true && ghost_mode_end - ghost_mode_start >= 8)
+			if (pacman.Get_ghost_hunter_mode() == true && ghost_mode_end - ghost_mode_start >= 3)
 			{
 				pacman.Get_ghost_hunter_mode() = false;
 			}
