@@ -45,6 +45,11 @@ void Game::Run(Menu menu)
 			Update();
 			Process();
 		}
+		//Ending
+		if (count_of_points == 0)
+		{
+			// code here
+		}
 
 	}
 }
