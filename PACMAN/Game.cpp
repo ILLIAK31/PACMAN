@@ -6,6 +6,8 @@
 //
 #include <iostream>
 
+int Game::count_of_points = 125;
+
 Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "Pacman"),matrix(Width, std::vector<std::string>(Height)),pacman(matrix)
 {
 	Icon.loadFromFile("Icon.png");
@@ -136,7 +138,10 @@ void Game::Update()
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
 		pacman.Get_X() += 1;
 		if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*")
+		{
+			--count_of_points;
 			Score += 10;
+		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
 			pacman.Get_ghost_hunter_mod() = true;
@@ -157,7 +162,10 @@ void Game::Update()
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
 		pacman.Get_X() -= 1;
 		if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*")
+		{
+			--count_of_points;
 			Score += 10;
+		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
 			pacman.Get_ghost_hunter_mod() = true;
@@ -178,7 +186,10 @@ void Game::Update()
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
 		pacman.Get_Y() -= 1;
 		if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*")
+		{
+			--count_of_points;
 			Score += 10;
+		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
 			pacman.Get_ghost_hunter_mod() = true;
@@ -191,7 +202,10 @@ void Game::Update()
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
 		pacman.Get_Y() += 1;
 		if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*")
+		{
+			--count_of_points;
 			Score += 10;
+		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
 			pacman.Get_ghost_hunter_mod() = true;

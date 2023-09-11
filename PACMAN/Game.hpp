@@ -18,6 +18,7 @@ public:
 	void Run(Menu menu);
 	~Game();
 private:
+	static int count_of_points;
 	sf::RenderWindow Window;
 	sf::Image Icon;
 	void Render();
