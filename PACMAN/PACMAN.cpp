@@ -17,9 +17,9 @@ int& Pacman::Get_Lifes()
 	return this->lifes;
 }
 
-bool& Pacman::Get_ghost_hunter_mod()
+bool& Pacman::Get_ghost_hunter_mode()
 {
-	return this->ghost_hunter_mod;
+	return this->ghost_hunter_mode;
 }
 
 bool Pacman::Check_collision_right(std::vector<std::vector<std::string>>& matrix)

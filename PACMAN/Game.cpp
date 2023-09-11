@@ -44,6 +44,13 @@ void Game::Run(Menu menu)
 			Process();
 			Update();
 			Process();
+			//Ghost mode
+			ghost_mode_end = Clock.getElapsedTime().asSeconds();
+			ghost_mode_end -= 5.2;
+			if (pacman.Get_ghost_hunter_mode() == true && ghost_mode_end - ghost_mode_start >= 8)
+			{
+				pacman.Get_ghost_hunter_mode() = false;
+			}
 		}
 		//Ending
 		if (count_of_points == 0)
@@ -149,7 +156,8 @@ void Game::Update()
 		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
-			pacman.Get_ghost_hunter_mod() = true;
+			pacman.Get_ghost_hunter_mode() = true;
+			ghost_mode_start = Clock.getElapsedTime().asSeconds();
 			Score += 50;
 		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "cherry")
@@ -173,7 +181,8 @@ void Game::Update()
 		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
-			pacman.Get_ghost_hunter_mod() = true;
+			pacman.Get_ghost_hunter_mode() = true;
+			ghost_mode_start = Clock.getElapsedTime().asSeconds();
 			Score += 50;
 		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "cherry")
@@ -197,7 +206,8 @@ void Game::Update()
 		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
-			pacman.Get_ghost_hunter_mod() = true;
+			pacman.Get_ghost_hunter_mode() = true;
+			ghost_mode_start = Clock.getElapsedTime().asSeconds();
 			Score += 50;
 		}
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
@@ -213,7 +223,8 @@ void Game::Update()
 		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
-			pacman.Get_ghost_hunter_mod() = true;
+			pacman.Get_ghost_hunter_mode() = true;
+			ghost_mode_start = Clock.getElapsedTime().asSeconds();
 			Score += 50;
 		}
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
