@@ -120,12 +120,12 @@ void Game::Update()
 	// Cherry logic
 	elapsedSeconds2 = Clock.getElapsedTime().asSeconds();
 	elapsedSeconds2 -= elapsedSeconds_0 + 4.5;
-	if (elapsedSeconds2 >= elapsedSeconds2_0 + 15 && matrix[38][20] == "cherry")
+	if (elapsedSeconds2 >= elapsedSeconds2_0 + 15 && matrix[38][20] == "cherry" && Cherry_status)
 	{
 		elapsedSeconds2_0 = elapsedSeconds2;
 		matrix[38][20] = "";
 	}
-	else if (elapsedSeconds2 >= elapsedSeconds2_0 + 15 && matrix[38][20] == " ")
+	else if (elapsedSeconds2 >= elapsedSeconds2_0 + 15 && matrix[38][20] == " " && Cherry_status)
 	{
 		elapsedSeconds2_0 = elapsedSeconds2;
 		matrix[38][20] = "cherry";
@@ -135,6 +135,19 @@ void Game::Update()
 	{
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
 		pacman.Get_X() += 1;
+		if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*")
+			Score += 10;
+		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
+		{
+			pacman.Get_ghost_hunter_mod() = true;
+			Score += 50;
+		}
+		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "cherry")
+		{
+			Cherry_status = false;
+			matrix[pacman.Get_Y()][pacman.Get_X()] = "";
+			Score += 100;
+		}
 		if (pacman.Get_Y() == 22 && pacman.Get_X() + 2 >= 41)
 			pacman.Get_X() = 0;
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
@@ -143,6 +156,19 @@ void Game::Update()
 	{
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
 		pacman.Get_X() -= 1;
+		if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*")
+			Score += 10;
+		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
+		{
+			pacman.Get_ghost_hunter_mod() = true;
+			Score += 50;
+		}
+		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "cherry")
+		{
+			Cherry_status = false;
+			matrix[pacman.Get_Y()][pacman.Get_X()] = "";
+			Score += 100;
+		}
 		if (pacman.Get_Y() == 22 && pacman.Get_X() - 2 <= 0)
 			pacman.Get_X() = 41;
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
@@ -151,12 +177,26 @@ void Game::Update()
 	{
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
 		pacman.Get_Y() -= 1;
+		if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*")
+			Score += 10;
+		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
+		{
+			pacman.Get_ghost_hunter_mod() = true;
+			Score += 50;
+		}
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
 	}
 	else if (pacman.Direction == 'D' && pacman.Check_collision_down(matrix))
 	{
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
 		pacman.Get_Y() += 1;
+		if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*")
+			Score += 10;
+		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
+		{
+			pacman.Get_ghost_hunter_mod() = true;
+			Score += 50;
+		}
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
 	}
 

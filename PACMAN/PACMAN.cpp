@@ -17,6 +17,11 @@ int& Pacman::Get_Lifes()
 	return this->lifes;
 }
 
+bool& Pacman::Get_ghost_hunter_mod()
+{
+	return this->ghost_hunter_mod;
+}
+
 bool Pacman::Check_collision_right(std::vector<std::vector<std::string>>& matrix)
 {
 	if (this->y == 22 && this->x + 2 >= 41)

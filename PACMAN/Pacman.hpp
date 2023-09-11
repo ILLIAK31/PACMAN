@@ -12,7 +12,9 @@ public:
 	int& Get_Y();
 	int& Get_Lifes();
 	char Direction{'C'};
+	bool& Get_ghost_hunter_mod();
 	bool Check_collision_right(std::vector<std::vector<std::string>>& matrix) , Check_collision_left(std::vector<std::vector<std::string>>& matrix), Check_collision_up(std::vector<std::vector<std::string>>& matrix) , Check_collision_down(std::vector<std::vector<std::string>>& matrix);
 private:
 	int x, y, lifes{3};
+	bool ghost_hunter_mod{ false };
 };
