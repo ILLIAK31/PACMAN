@@ -33,7 +33,7 @@ private:
 	std::chrono::high_resolution_clock::time_point start, end;
 	std::chrono::milliseconds duration, duration0{ 0 };
 	int speed{ 130 }, Score{ 0 }, Best_score{0};
-	float fruit1_Scale = 0.04f, cherry_Scale = 0.035f, ghost_mode_start, ghost_mode_end, elapsedSeconds, elapsedSeconds_0, elapsedSeconds2, elapsedSeconds2_0{0} , elapsedSeconds3 , elapsedSeconds3_0;
+	float fruit1_Scale = 0.04f, cherry_Scale = 0.035f, ghost_mode_start, ghost_mode_end, elapsedSeconds, elapsedSeconds_0, elapsedSeconds2, elapsedSeconds2_0{0};
 	Matrix matrix_setup;
 	sf::Clock Clock;
 	bool Clock_status{ true }, Menu_status{ true }, Cherry_status{true};

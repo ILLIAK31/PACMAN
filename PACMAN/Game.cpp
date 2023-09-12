@@ -8,7 +8,7 @@
 #include <chrono>
 #include <iostream>
 
-int Game::count_of_points = 0; //125
+int Game::count_of_points = 125;
 
 Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "Pacman"),matrix(Width, std::vector<std::string>(Height)),pacman(matrix)
 {
@@ -78,18 +78,16 @@ void Game::Run(Menu menu)
 			if (!Music2.openFromFile("sound2.wav")){}
 			else
 			{
+				auto start_time = std::chrono::steady_clock::now();
+				auto duration = std::chrono::seconds(5);
+				auto end_time = start_time + duration;
 				Music2.play();
 				Render();
-				while (elapsedSeconds3 < 5)
-				{
-					elapsedSeconds3 = Clock.getElapsedTime().asSeconds();
-					elapsedSeconds3 -= elapsedSeconds3_0;
-				}
+				while (std::chrono::high_resolution_clock::now() < end_time){}
 				Music2.stop();
 			}
 			Window.close();
 		}
-
 	}
 }
 
