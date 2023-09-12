@@ -4,9 +4,11 @@
 #include "Pacman.hpp"
 #include <string>
 //
+#include <thread>
+#include <chrono>
 #include <iostream>
 
-int Game::count_of_points = 125;
+int Game::count_of_points = 0; //125
 
 Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "Pacman"),matrix(Width, std::vector<std::string>(Height)),pacman(matrix)
 {
@@ -53,9 +55,39 @@ void Game::Run(Menu menu)
 			}
 		}
 		//Ending
-		if (count_of_points == 0)
+		if (count_of_points == 0 || pacman.Get_Lifes() == 0)
 		{
-			// code here
+			matrix[pacman.Get_Y()][pacman.Get_X()] = "";
+			//Ghosts code here
+			if (Score > Best_score)
+				Best_score = Score;
+
+			//Game over text
+			float Game_Scale = 0.1f;
+			if (!Game_Texture.loadFromFile("Game.png")) {}
+			Game_Sprite.setTexture(Game_Texture);
+			Game_Sprite.setScale(Game_Scale, Game_Scale);
+			if (!Over_Texture.loadFromFile("Over.png")) {}
+			Over_Sprite.setTexture(Over_Texture);
+			Over_Sprite.setScale(Game_Scale, Game_Scale);
+			matrix[28][15] = "Game";
+			matrix[28][21] = "Over";
+
+			//Music
+			sf::Music Music2;
+			if (!Music2.openFromFile("sound2.wav")){}
+			else
+			{
+				Music2.play();
+				Render();
+				while (elapsedSeconds3 < 5)
+				{
+					elapsedSeconds3 = Clock.getElapsedTime().asSeconds();
+					elapsedSeconds3 -= elapsedSeconds3_0;
+				}
+				Music2.stop();
+			}
+			Window.close();
 		}
 
 	}
@@ -428,6 +460,7 @@ void Game::Setup_Textures()
 
 void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShape& cell2 , sf::CircleShape& cell3)
 {
+	//shit I made mistake in creating of textures on the begining thats why I must pay for that with this if's fuck
 	float pacman_x, pacman_y;
 	if (matrix[height][width] == "#")
 	{
@@ -882,6 +915,16 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		cell3.setFillColor(sf::Color::White);
 		cell3.setPosition(CELL * width, CELL * height);
 		Window.draw(cell3);
+	}
+	else if (matrix[height][width] == "Game")
+	{
+		Game_Sprite.setPosition(width * CELL, height * CELL*0.98);
+		Window.draw(Game_Sprite);
+	}
+	else if (matrix[height][width] == "Over")
+	{
+		Over_Sprite.setPosition(width * CELL, height * CELL*0.98);
+		Window.draw(Over_Sprite);
 	}
 }
 
