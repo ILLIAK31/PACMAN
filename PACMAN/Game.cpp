@@ -4,8 +4,6 @@
 #include "Pacman.hpp"
 #include <string>
 //
-#include <thread>
-#include <chrono>
 #include <iostream>
 
 int Game::count_of_points = 125;
