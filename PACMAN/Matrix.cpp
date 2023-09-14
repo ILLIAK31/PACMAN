@@ -92,7 +92,14 @@ void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 
 	matrix[30][2] = matrix[30][39] = matrix[7][2] = matrix[7][39] = "*P";
 
-	//
+	// Score 1 and 2
+	matrix[2][1] = "N1_1";
+	matrix[2][3] = "N1_2";
+	matrix[2][5] = "N1_3";
+	matrix[2][7] = "N1_4";
+	matrix[2][9] = "N1_5";
+	matrix[2][11] = "N1_6";
+
 	matrix[2][25] = "N2_1";
 	matrix[2][27] = "N2_2";
 	matrix[2][29] = "N2_3";

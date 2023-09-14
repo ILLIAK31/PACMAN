@@ -4,11 +4,9 @@
 #include "Pacman.hpp"
 #include <string>
 //
-// threads
-// chrono
 #include <iostream>
 
-int Game::count_of_points = 125;
+int Game::count_of_points = 125; //125
 
 Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "Pacman"),matrix(Width, std::vector<std::string>(Height)),pacman(matrix)
 {
@@ -459,6 +457,7 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 {
 	//shit I made mistake in creating of textures on the begining thats why I must pay for that with this if's fuck
 	float pacman_x, pacman_y;
+	path = "N";
 	if (matrix[height][width] == "#")
 	{
 		cell.setFillColor(sf::Color::Blue);
@@ -925,7 +924,6 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	}
 	else if (matrix[height][width] == "N2_1")
 	{
-		path = "N";
 		path += (std::to_string(Score))[0];
 		path += ".png";
 		if (!N2_Texture.loadFromFile(path)) {}
@@ -936,7 +934,6 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	}
 	else if (matrix[height][width] == "N2_2" && (std::to_string(Score)).size() > 1)
 	{
-		path = "N";
 		path += (std::to_string(Score))[1];
 		path += ".png";
 		if (!N2_Texture.loadFromFile(path)) {}
@@ -947,7 +944,6 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	}
 	else if (matrix[height][width] == "N2_3" && (std::to_string(Score)).size() > 2)
 	{
-		path = "N";
 		path += (std::to_string(Score))[2];
 		path += ".png";
 		if (!N2_Texture.loadFromFile(path)) {}
@@ -958,7 +954,6 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	}
 	else if (matrix[height][width] == "N2_4" && (std::to_string(Score)).size() > 3)
 	{
-		path = "N";
 		path += (std::to_string(Score))[3];
 		path += ".png";
 		if (!N2_Texture.loadFromFile(path)) {}
@@ -969,7 +964,6 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	}
 	else if (matrix[height][width] == "N2_5" && (std::to_string(Score)).size() > 4)
 	{
-		path = "N";
 		path += (std::to_string(Score))[4];
 		path += ".png";
 		if (!N2_Texture.loadFromFile(path)) {}
@@ -980,7 +974,6 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	}
 	else if (matrix[height][width] == "N2_6" && (std::to_string(Score)).size() > 5)
 	{
-		path = "N";
 		path += (std::to_string(Score))[5];
 		path += ".png";
 		if (!N2_Texture.loadFromFile(path)) {}
@@ -988,6 +981,66 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		N2_Sprite.setScale(0.03f, 0.03f);
 		N2_Sprite.setPosition(width * CELL * 0.98, height * CELL * 1.27);
 		Window.draw(N2_Sprite);
+	}
+	else if (matrix[height][width] == "N1_1")
+	{
+		path += (std::to_string(Best_score))[0];
+		path += ".png";
+		if (!N1_Texture.loadFromFile(path)){}
+		N1_Sprite.setTexture(N1_Texture);
+		N1_Sprite.setScale(0.03f, 0.03f);
+		N1_Sprite.setPosition(width * CELL, height * CELL * 1.27);
+		Window.draw(N1_Sprite);
+	}
+	else if (matrix[height][width] == "N1_2" && (std::to_string(Best_score)).size() > 1)
+	{
+		path += (std::to_string(Best_score))[1];
+		path += ".png";
+		if (!N1_Texture.loadFromFile(path)) {}
+		N1_Sprite.setTexture(N1_Texture);
+		N1_Sprite.setScale(0.03f, 0.03f);
+		N1_Sprite.setPosition(width * CELL * 0.8, height * CELL * 1.27);
+		Window.draw(N1_Sprite);
+	}
+	else if (matrix[height][width] == "N1_3" && (std::to_string(Best_score)).size() > 2)
+	{
+		path += (std::to_string(Best_score))[2];
+		path += ".png";
+		if (!N1_Texture.loadFromFile(path)) {}
+		N1_Sprite.setTexture(N1_Texture);
+		N1_Sprite.setScale(0.03f, 0.03f);
+		N1_Sprite.setPosition(width * CELL * 0.8, height * CELL * 1.27);
+		Window.draw(N1_Sprite);
+	}
+	else if (matrix[height][width] == "N1_4" && (std::to_string(Best_score)).size() > 3)
+	{
+		path += (std::to_string(Best_score))[3];
+		path += ".png";
+		if (!N1_Texture.loadFromFile(path)) {}
+		N1_Sprite.setTexture(N1_Texture);
+		N1_Sprite.setScale(0.03f, 0.03f);
+		N1_Sprite.setPosition(width * CELL * 0.8, height * CELL * 1.27);
+		Window.draw(N1_Sprite);
+	}
+	else if (matrix[height][width] == "N1_5" && (std::to_string(Best_score)).size() > 4)
+	{
+		path += (std::to_string(Best_score))[4];
+		path += ".png";
+		if (!N1_Texture.loadFromFile(path)) {}
+		N1_Sprite.setTexture(N1_Texture);
+		N1_Sprite.setScale(0.03f, 0.03f);
+		N1_Sprite.setPosition(width * CELL * 0.8, height * CELL * 1.27);
+		Window.draw(N1_Sprite);
+	}
+	else if (matrix[height][width] == "N1_6" && (std::to_string(Best_score)).size() > 5)
+	{
+		path += (std::to_string(Best_score))[5];
+		path += ".png";
+		if (!N1_Texture.loadFromFile(path)) {}
+		N1_Sprite.setTexture(N1_Texture);
+		N1_Sprite.setScale(0.03f, 0.03f);
+		N1_Sprite.setPosition(width * CELL * 0.8, height * CELL * 1.27);
+		Window.draw(N1_Sprite);
 	}
 }
 
