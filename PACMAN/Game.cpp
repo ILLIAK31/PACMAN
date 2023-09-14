@@ -259,7 +259,6 @@ void Game::Update()
 		}
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
 	}
-
 }
 
 void Game::Process()
