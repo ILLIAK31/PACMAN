@@ -4,6 +4,8 @@
 #include "Pacman.hpp"
 #include <string>
 //
+// threads
+// chrono
 #include <iostream>
 
 int Game::count_of_points = 125;
@@ -921,6 +923,72 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 	{
 		Over_Sprite.setPosition(width * CELL, height * CELL*0.98);
 		Window.draw(Over_Sprite);
+	}
+	else if (matrix[height][width] == "N2_1")
+	{
+		path = "N";
+		path += (std::to_string(Score))[0];
+		path += ".png";
+		if (!N2_Texture.loadFromFile(path)) {}
+		N2_Sprite.setTexture(N2_Texture);
+		N2_Sprite.setScale(0.03f, 0.03f);
+		N2_Sprite.setPosition(width * CELL, height * CELL*1.27);
+		Window.draw(N2_Sprite);
+	}
+	else if (matrix[height][width] == "N2_2" && (std::to_string(Score)).size() > 1)
+	{
+		path = "N";
+		path += (std::to_string(Score))[1];
+		path += ".png";
+		if (!N2_Texture.loadFromFile(path)) {}
+		N2_Sprite.setTexture(N2_Texture);
+		N2_Sprite.setScale(0.03f, 0.03f);
+		N2_Sprite.setPosition(width * CELL*0.98, height * CELL * 1.27);
+		Window.draw(N2_Sprite);
+	}
+	else if (matrix[height][width] == "N2_3" && (std::to_string(Score)).size() > 2)
+	{
+		path = "N";
+		path += (std::to_string(Score))[2];
+		path += ".png";
+		if (!N2_Texture.loadFromFile(path)) {}
+		N2_Sprite.setTexture(N2_Texture);
+		N2_Sprite.setScale(0.03f, 0.03f);
+		N2_Sprite.setPosition(width * CELL * 0.97, height * CELL * 1.27);
+		Window.draw(N2_Sprite);
+	}
+	else if (matrix[height][width] == "N2_4" && (std::to_string(Score)).size() > 3)
+	{
+		path = "N";
+		path += (std::to_string(Score))[3];
+		path += ".png";
+		if (!N2_Texture.loadFromFile(path)) {}
+		N2_Sprite.setTexture(N2_Texture);
+		N2_Sprite.setScale(0.03f, 0.03f);
+		N2_Sprite.setPosition(width * CELL * 0.96, height * CELL * 1.27);
+		Window.draw(N2_Sprite);
+	}
+	else if (matrix[height][width] == "N2_5" && (std::to_string(Score)).size() > 4)
+	{
+		path = "N";
+		path += (std::to_string(Score))[4];
+		path += ".png";
+		if (!N2_Texture.loadFromFile(path)) {}
+		N2_Sprite.setTexture(N2_Texture);
+		N2_Sprite.setScale(0.03f, 0.03f);
+		N2_Sprite.setPosition(width * CELL * 0.98, height * CELL * 1.27);
+		Window.draw(N2_Sprite);
+	}
+	else if (matrix[height][width] == "N2_6" && (std::to_string(Score)).size() > 5)
+	{
+		path = "N";
+		path += (std::to_string(Score))[5];
+		path += ".png";
+		if (!N2_Texture.loadFromFile(path)) {}
+		N2_Sprite.setTexture(N2_Texture);
+		N2_Sprite.setScale(0.03f, 0.03f);
+		N2_Sprite.setPosition(width * CELL * 0.98, height * CELL * 1.27);
+		Window.draw(N2_Sprite);
 	}
 }
 

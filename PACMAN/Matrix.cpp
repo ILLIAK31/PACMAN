@@ -91,4 +91,12 @@ void Matrix::Setup_Matrix(std::vector<std::vector<std::string>>& matrix)
 	//Tablets
 
 	matrix[30][2] = matrix[30][39] = matrix[7][2] = matrix[7][39] = "*P";
+
+	//
+	matrix[2][25] = "N2_1";
+	matrix[2][27] = "N2_2";
+	matrix[2][29] = "N2_3";
+	matrix[2][31] = "N2_4";
+	matrix[2][33] = "N2_5";
+	matrix[2][35] = "N2_6";
 }
