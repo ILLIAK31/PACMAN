@@ -167,7 +167,7 @@ void Game::Update()
 	if (elapsedSeconds2 >= elapsedSeconds2_0 + 15 && matrix[38][20] == "cherry" && Cherry_status)
 	{
 		elapsedSeconds2_0 = elapsedSeconds2;
-		matrix[38][20] = "";
+		matrix[38][20] = " ";
 	}
 	else if (elapsedSeconds2 >= elapsedSeconds2_0 + 15 && matrix[38][20] == " " && Cherry_status)
 	{
