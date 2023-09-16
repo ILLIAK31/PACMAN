@@ -38,4 +38,5 @@ private:
 	sf::Clock Clock;
 	bool Clock_status{ true }, Menu_status{ true }, Cherry_status{true};
 	std::string path;
+	int x0, y0;
 };

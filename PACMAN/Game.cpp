@@ -173,6 +173,8 @@ void Game::Update()
 		matrix[38][20] = "cherry";
 	}
 	//Pacman move
+	x0 = pacman.Get_X();
+	y0 = pacman.Get_Y();
 	if (pacman.Direction == 'R'&&pacman.Check_collision_right(matrix))
 	{
 		matrix[pacman.Get_Y()][pacman.Get_X()] = " ";
@@ -265,6 +267,8 @@ void Game::Update()
 		if ((++pacman.Get_animation_status()) > 3)
 			pacman.Get_animation_status() = 1;
 	}
+	if (pacman.Get_X() == x0 && pacman.Get_Y() == y0 && pacman.Get_animation_status() == 3)
+		pacman.Get_animation_status() = 1;
 }
 
 void Game::Process()
@@ -694,6 +698,19 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		{
 			pacman_y = 0.9;
 		}
+
+		if (pacman.Get_animation_status() == 1)
+		{
+			if (!Pacman1_Texture.loadFromFile("pacman_body1.png")) {}
+		}
+		else if (pacman.Get_animation_status() == 2)
+		{
+			if (!Pacman1_Texture.loadFromFile("pacman_body1_2.png")) {}
+		}
+		else
+		{
+			if (!Pacman1_Texture.loadFromFile("pacman_body0.png")) {}
+		}
 		Pacman1_Sprite.setPosition(pacman.Get_X()*CELL*pacman_x, pacman.Get_Y()*CELL * pacman_y);
 		Window.draw(Pacman1_Sprite);
 	}
@@ -765,6 +782,19 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		{
 			pacman_x = 0.95;
 			pacman_y = 0.975;
+		}
+
+		if (pacman.Get_animation_status() == 1)
+		{
+			if (!Pacman2_Texture.loadFromFile("pacman_body2.png")) {}
+		}
+		else if (pacman.Get_animation_status() == 2)
+		{
+			if (!Pacman2_Texture.loadFromFile("pacman_body2_2.png")) {}
+		}
+		else
+		{
+			if (!Pacman2_Texture.loadFromFile("pacman_body0.png")) {}
 		}
 		Pacman2_Sprite.setPosition(pacman.Get_X() * CELL*pacman_x, pacman.Get_Y() * CELL * pacman_y);
 		Window.draw(Pacman2_Sprite);
@@ -845,6 +875,19 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 			pacman_x = 0.915;
 		else if (pacman.Get_X() > 20)
 			pacman_x = 0.978;
+
+		if (pacman.Get_animation_status() == 1)
+		{
+			if (!Pacman3_Texture.loadFromFile("pacman_body3.png")) {}
+		}
+		else if (pacman.Get_animation_status() == 2)
+		{
+			if (!Pacman3_Texture.loadFromFile("pacman_body3_2.png")) {}
+		}
+		else
+		{
+			if (!Pacman3_Texture.loadFromFile("pacman_body0.png")) {}
+		}
 		Pacman3_Sprite.setPosition(pacman.Get_X() * CELL*pacman_x, pacman.Get_Y() * CELL * pacman_y);
 		Window.draw(Pacman3_Sprite);
 	}
@@ -898,9 +941,22 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		{
 			pacman_x = 0.975;
 		}
+
+		if (pacman.Get_animation_status() == 1)
+		{
+			if (!Pacman4_Texture.loadFromFile("pacman_body4.png")) {}
+		}
+		else if (pacman.Get_animation_status() == 2)
+		{
+			if (!Pacman4_Texture.loadFromFile("pacman_body4_2.png")) {}
+		}
+		else
+		{
+			if (!Pacman4_Texture.loadFromFile("pacman_body0.png")) {}
+		}
 		Pacman4_Sprite.setPosition(pacman.Get_X() * CELL * pacman_x, pacman.Get_Y() * CELL * pacman_y);
 		Window.draw(Pacman4_Sprite);
-		}
+	}
 	else if (matrix[height][width] == "*")
 	{
 
