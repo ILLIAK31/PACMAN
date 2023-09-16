@@ -22,6 +22,11 @@ bool& Pacman::Get_ghost_hunter_mode()
 	return this->ghost_hunter_mode;
 }
 
+int& Pacman::Get_animation_status()
+{
+	return this->Animation_status;
+}
+
 bool Pacman::Check_collision_right(std::vector<std::vector<std::string>>& matrix)
 {
 	if (this->y == 22 && this->x + 2 >= 41)

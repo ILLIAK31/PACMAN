@@ -6,7 +6,7 @@
 //
 #include <iostream>
 
-int Game::count_of_points = 125; //125
+int Game::count_of_points = 125;
 
 Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "Pacman"),matrix(Width, std::vector<std::string>(Height)),pacman(matrix)
 {
@@ -197,6 +197,8 @@ void Game::Update()
 		if (pacman.Get_Y() == 22 && pacman.Get_X() + 2 >= 41)
 			pacman.Get_X() = 0;
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+		if ((++pacman.Get_animation_status()) > 3)
+			pacman.Get_animation_status() = 1;
 	}
 	else if (pacman.Direction == 'L' && pacman.Check_collision_left(matrix))
 	{
@@ -222,6 +224,8 @@ void Game::Update()
 		if (pacman.Get_Y() == 22 && pacman.Get_X() - 2 <= 0)
 			pacman.Get_X() = 41;
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+		if ((++pacman.Get_animation_status()) > 3)
+			pacman.Get_animation_status() = 1;
 	}
 	else if (pacman.Direction == 'U' && pacman.Check_collision_up(matrix))
 	{
@@ -239,6 +243,8 @@ void Game::Update()
 			Score += 50;
 		}
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+		if ((++pacman.Get_animation_status()) > 3)
+			pacman.Get_animation_status() = 1;
 	}
 	else if (pacman.Direction == 'D' && pacman.Check_collision_down(matrix))
 	{
@@ -256,6 +262,8 @@ void Game::Update()
 			Score += 50;
 		}
 		matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+		if ((++pacman.Get_animation_status()) > 3)
+			pacman.Get_animation_status() = 1;
 	}
 }
 
