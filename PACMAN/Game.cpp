@@ -35,6 +35,8 @@ void Game::Run(Menu menu)
 			menu.Update(Window);
 		}
 		Menu_status = false;
+		Game_Music = true;
+
 		//Main
 		end = std::chrono::high_resolution_clock::now();
 		duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
@@ -159,6 +161,7 @@ void Game::Update()
 		}
 	}
 	Clock_status = false;
+
 	// Cherry logic
 	elapsedSeconds2 = Clock.getElapsedTime().asSeconds();
 	elapsedSeconds2 -= elapsedSeconds_0 + 4.5;
@@ -186,6 +189,22 @@ void Game::Update()
 		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
+			//Music
+			sf::Music Music3;
+			if (!Music3.openFromFile("sound3.wav")) {}
+			else
+			{
+				matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+				if (pacman.Get_X() == x0 && pacman.Get_Y() == y0 && pacman.Get_animation_status() == 3)
+					pacman.Get_animation_status() = 1;
+				Render();
+				auto start_time3 = std::chrono::steady_clock::now();
+				auto duration3 = std::chrono::milliseconds(800);
+				auto end_time3 = start_time3 + duration3;
+				Music3.play();
+				while (std::chrono::high_resolution_clock::now() < end_time3) {}
+				Music3.stop();
+			}
 			pacman.Get_ghost_hunter_mode() = true;
 			ghost_mode_start = Clock.getElapsedTime().asSeconds();
 			Score += 50;
@@ -213,6 +232,22 @@ void Game::Update()
 		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
+			//Music
+			sf::Music Music3;
+			if (!Music3.openFromFile("sound3.wav")) {}
+			else
+			{
+				matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+				if (pacman.Get_X() == x0 && pacman.Get_Y() == y0 && pacman.Get_animation_status() == 3)
+					pacman.Get_animation_status() = 1;
+				Render();
+				auto start_time3 = std::chrono::steady_clock::now();
+				auto duration3 = std::chrono::milliseconds(800);
+				auto end_time3 = start_time3 + duration3;
+				Music3.play();
+				while (std::chrono::high_resolution_clock::now() < end_time3) {}
+				Music3.stop();
+			}
 			pacman.Get_ghost_hunter_mode() = true;
 			ghost_mode_start = Clock.getElapsedTime().asSeconds();
 			Score += 50;
@@ -240,6 +275,22 @@ void Game::Update()
 		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
+			//Music
+			sf::Music Music3;
+			if (!Music3.openFromFile("sound3.wav")) {}
+			else
+			{
+				matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+				if (pacman.Get_X() == x0 && pacman.Get_Y() == y0 && pacman.Get_animation_status() == 3)
+					pacman.Get_animation_status() = 1;
+				Render();
+				auto start_time3 = std::chrono::steady_clock::now();
+				auto duration3 = std::chrono::milliseconds(800);
+				auto end_time3 = start_time3 + duration3;
+				Music3.play();
+				while (std::chrono::high_resolution_clock::now() < end_time3) {}
+				Music3.stop();
+			}
 			pacman.Get_ghost_hunter_mode() = true;
 			ghost_mode_start = Clock.getElapsedTime().asSeconds();
 			Score += 50;
@@ -259,6 +310,22 @@ void Game::Update()
 		}
 		else if (matrix[pacman.Get_Y()][pacman.Get_X()] == "*P")
 		{
+			//Music
+			sf::Music Music3;
+			if (!Music3.openFromFile("sound3.wav")) {}
+			else
+			{
+				matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+				if (pacman.Get_X() == x0 && pacman.Get_Y() == y0 && pacman.Get_animation_status() == 3)
+					pacman.Get_animation_status() = 1;
+				Render();
+				auto start_time3 = std::chrono::steady_clock::now();
+				auto duration3 = std::chrono::milliseconds(800);
+				auto end_time3 = start_time3 + duration3;
+				Music3.play();
+				while (std::chrono::high_resolution_clock::now() < end_time3) {}
+				Music3.stop();
+			}
 			pacman.Get_ghost_hunter_mode() = true;
 			ghost_mode_start = Clock.getElapsedTime().asSeconds();
 			Score += 50;
