@@ -3,12 +3,14 @@
 #include "Game.hpp"
 #include "Pacman.hpp"
 #include <string>
+#include "Red.hpp"
+#include "Ghost.hpp"
 //
 #include <iostream>
 
 int Game::count_of_points = 125;
 
-Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "Pacman"),matrix(Width, std::vector<std::string>(Height)),pacman(matrix)
+Game::Game() :Window(sf::VideoMode(CELL* Width* Screen, CELL* Height* Screen * 1.2), "Pacman"), matrix(Width, std::vector<std::string>(Height)), pacman(matrix),red(Red(2,21))
 {
 	Icon.loadFromFile("Icon.png");
 	Window.setSize(sf::Vector2u(CELL * Width * Screen, CELL * Height * Screen * 1.1));
@@ -22,6 +24,7 @@ Game::Game():Window(sf::VideoMode(CELL*Width*Screen, CELL*Height*Screen*1.2), "P
 	start = std::chrono::high_resolution_clock::now();
 
 	matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+	matrix[red.Get_Y()][red.Get_X()] = "G1";
 }
 
 void Game::Run(Menu menu)
@@ -530,6 +533,9 @@ void Game::Setup_Textures()
 	Wall30_Sprite.setTexture(Wall30_Texture);
 	Wall30_Sprite.setScale(0.055f, 0.055f);
 
+	if (!G1_Texture.loadFromFile("G1.png")) {}
+	G1_Sprite.setTexture(G1_Texture);
+	G1_Sprite.setScale(0.055f, 0.055f);
 }
 
 void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShape& cell2 , sf::CircleShape& cell3)
@@ -1172,6 +1178,11 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		N1_Sprite.setScale(0.03f, 0.03f);
 		N1_Sprite.setPosition(width * CELL * 0.8, height * CELL * 1.27);
 		Window.draw(N1_Sprite);
+	}
+	else if (matrix[height][width] == "G1")
+	{
+		G1_Sprite.setPosition(width * CELL, height * CELL);
+		Window.draw(G1_Sprite);
 	}
 }
 
