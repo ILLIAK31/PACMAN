@@ -13,7 +13,7 @@
 
 int Game::count_of_points = 125;
 
-Game::Game() :Window(sf::VideoMode(CELL* Width* Screen, CELL* Height* Screen * 1.2), "Pacman"), matrix(Width, std::vector<std::string>(Height)), pacman(matrix),red(Red(20,20)), blue(Blue(0, 22)) , orange(Pink(3, 22)) , pink(Pink(6, 22))
+Game::Game() :Window(sf::VideoMode(CELL* Width* Screen, CELL* Height* Screen * 1.2), "Pacman"), matrix(Width, std::vector<std::string>(Height)), pacman(matrix),red(Red(20,20)), blue(Blue(17, 24)) , orange(Orange(23, 24)) , pink(Pink(20, 24))
 {
 	Icon.loadFromFile("Icon.png");
 	Window.setSize(sf::Vector2u(CELL * Width * Screen, CELL * Height * Screen * 1.1));
@@ -1225,11 +1225,17 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		}
 
 	}
-	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'R')
+	else if ((matrix[height][width] == "G1" && red.Get_Direction() == 'R') || (matrix[height][width] == "G2" && blue.Get_Direction() == 'R') || (matrix[height][width] == "G3" && pink.Get_Direction() == 'R') || (matrix[height][width] == "G4" && orange.Get_Direction() == 'R'))
 	{
 		Ghost all;
 		if (matrix[height][width] == "G1")
 			all = red;
+		else if (matrix[height][width] == "G2")
+			all = blue;
+		else if (matrix[height][width] == "G3")
+			all = pink;
+		else
+			all = orange;
 
 		all_x = 0.981;
 		all_y = 0.975;
@@ -1297,15 +1303,42 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 			all_y = 0.9;
 		}	
 
-		if (!G1_Texture.loadFromFile("G1_1.png")) {}
-		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
-		Window.draw(G1_Sprite);
+		if (matrix[height][width] == "G1")
+		{
+			if (!G1_Texture.loadFromFile("G1_1.png")) {}
+			G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G1_Sprite);
+		}
+		else if (matrix[height][width] == "G2")
+		{
+			if (!G2_Texture.loadFromFile("G2_1.png")) {}
+			G2_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G2_Sprite);
+		}
+		else if (matrix[height][width] == "G3")
+		{
+			if (!G3_Texture.loadFromFile("G3_1.png")) {}
+			G3_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G3_Sprite);
+		}
+		else
+		{
+			if (!G4_Texture.loadFromFile("G4_1.png")) {}
+			G4_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G4_Sprite);
+		}
 	}
-	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'L')
+	else if ((matrix[height][width] == "G1" && red.Get_Direction() == 'L') || (matrix[height][width] == "G2" && blue.Get_Direction() == 'L') || (matrix[height][width] == "G3" && pink.Get_Direction() == 'L') || (matrix[height][width] == "G4" && orange.Get_Direction() == 'L'))
 	{
 		Ghost all;
 		if (matrix[height][width] == "G1")
 			all = red;
+		else if (matrix[height][width] == "G2")
+			all = blue;
+		else if (matrix[height][width] == "G3")
+			all = pink;
+		else
+			all = orange;
 
 		all_x = 0.915;
 		all_y = 0.975;
@@ -1375,15 +1408,42 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 			all_y = 0.975;
 		}
 
-		if (!G1_Texture.loadFromFile("G_2.png")) {}
-		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
-		Window.draw(G1_Sprite);
+		if (matrix[height][width] == "G1")
+		{
+			if (!G1_Texture.loadFromFile("G1_2.png")) {}
+			G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G1_Sprite);
+		}
+		else if (matrix[height][width] == "G2")
+		{
+			if (!G2_Texture.loadFromFile("G2_2.png")) {}
+			G2_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G2_Sprite);
+		}
+		else if (matrix[height][width] == "G3")
+		{
+			if (!G3_Texture.loadFromFile("G3_2.png")) {}
+			G3_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G3_Sprite);
+		}
+		else
+		{
+			if (!G4_Texture.loadFromFile("G4_2.png")) {}
+			G4_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G4_Sprite);
+		}
 	}
-	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'U')
+	else if ((matrix[height][width] == "G1" && red.Get_Direction() == 'U') || (matrix[height][width] == "G2" && blue.Get_Direction() == 'U') || (matrix[height][width] == "G3" && pink.Get_Direction() == 'U') || (matrix[height][width] == "G4" && orange.Get_Direction() == 'U'))
 	{
 		Ghost all;
 		if (matrix[height][width] == "G1")
 			all = red;
+		else if (matrix[height][width] == "G2")
+			all = blue;
+		else if (matrix[height][width] == "G3")
+			all = pink;
+		else
+			all = orange;
 
 		all_x = 1;
 		all_y = 0.92;
@@ -1460,15 +1520,42 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		else if (all.Get_X() > 20)
 			all_x = 0.978;
 
-		if (!G1_Texture.loadFromFile("G1_3.png")) {}
-		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
-		Window.draw(G1_Sprite);
+		if (matrix[height][width] == "G1")
+		{
+			if (!G1_Texture.loadFromFile("G1_3.png")) {}
+			G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G1_Sprite);
+		}
+		else if (matrix[height][width] == "G2")
+		{
+			if (!G2_Texture.loadFromFile("G2_3.png")) {}
+			G2_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G2_Sprite);
+		}
+		else if (matrix[height][width] == "G3")
+		{
+			if (!G3_Texture.loadFromFile("G3_3.png")) {}
+			G3_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G3_Sprite);
+		}
+		else
+		{
+			if (!G4_Texture.loadFromFile("G4_3.png")) {}
+			G4_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G4_Sprite);
+		}
 	}
-	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'D')
+	else if ((matrix[height][width] == "G1" && red.Get_Direction() == 'D') || (matrix[height][width] == "G2" && blue.Get_Direction() == 'D') || (matrix[height][width] == "G3" && pink.Get_Direction() == 'D') || (matrix[height][width] == "G4" && orange.Get_Direction() == 'D'))
 	{
 		Ghost all;
 		if (matrix[height][width] == "G1")
 			all = red;
+		else if (matrix[height][width] == "G2")
+			all = blue;
+		else if (matrix[height][width] == "G3")
+			all = pink;
+		else
+			all = orange;
 
 		all_x = 0.98;
 		all_y = 0.98;
@@ -1519,9 +1606,30 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 			all_x = 0.975;
 		}
 
-		if (!G1_Texture.loadFromFile("G1_4.png")) {}
-		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
-		Window.draw(G1_Sprite);
+		if (matrix[height][width] == "G1")
+		{
+			if (!G1_Texture.loadFromFile("G1_4.png")) {}
+			G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G1_Sprite);
+		}
+		else if (matrix[height][width] == "G2")
+		{
+			if (!G2_Texture.loadFromFile("G2_4.png")) {}
+			G2_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G2_Sprite);
+		}
+		else if (matrix[height][width] == "G3")
+		{
+			if (!G3_Texture.loadFromFile("G3_4.png")) {}
+			G3_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G3_Sprite);
+		}
+		else
+		{
+			if (!G4_Texture.loadFromFile("G4_4.png")) {}
+			G4_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+			Window.draw(G4_Sprite);
+		}
 	}
 }
 
