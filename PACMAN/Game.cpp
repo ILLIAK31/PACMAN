@@ -10,7 +10,7 @@
 
 int Game::count_of_points = 125;
 
-Game::Game() :Window(sf::VideoMode(CELL* Width* Screen, CELL* Height* Screen * 1.2), "Pacman"), matrix(Width, std::vector<std::string>(Height)), pacman(matrix),red(Red(20,20))
+Game::Game() :Window(sf::VideoMode(CELL* Width* Screen, CELL* Height* Screen * 1.2), "Pacman"), matrix(Width, std::vector<std::string>(Height)), pacman(matrix),red(Red(20,20)), blue(Red(0, 22)) , orange(Red(3, 22)) , pink(Red(6, 22))
 {
 	Icon.loadFromFile("Icon.png");
 	Window.setSize(sf::Vector2u(CELL * Width * Screen, CELL * Height * Screen * 1.1));
@@ -25,6 +25,9 @@ Game::Game() :Window(sf::VideoMode(CELL* Width* Screen, CELL* Height* Screen * 1
 
 	matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
 	matrix[red.Get_Y()][red.Get_X()] = "G1";
+	matrix[blue.Get_Y()][blue.Get_X()] = "G2";
+	matrix[pink.Get_Y()][pink.Get_X()] = "G3";
+	matrix[orange.Get_Y()][orange.Get_X()] = "G4";
 }
 
 void Game::Run(Menu menu)
@@ -533,10 +536,21 @@ void Game::Setup_Textures()
 	Wall30_Sprite.setTexture(Wall30_Texture);
 	Wall30_Sprite.setScale(0.055f, 0.055f);
 
-	if (!G1_Texture.loadFromFile("G0.png")) {}
+	if (!G1_Texture.loadFromFile("G1_0.png")) {}
 	G1_Sprite.setTexture(G1_Texture);
 	G1_Sprite.setScale(0.075f, 0.075f);
 
+	if (!G2_Texture.loadFromFile("G2_0.png")) {}
+	G2_Sprite.setTexture(G2_Texture);
+	G2_Sprite.setScale(0.075f, 0.075f);
+
+	if (!G3_Texture.loadFromFile("G3_0.png")) {}
+	G3_Sprite.setTexture(G3_Texture);
+	G3_Sprite.setScale(0.075f, 0.075f);
+
+	if (!G4_Texture.loadFromFile("G4_0.png")) {}
+	G4_Sprite.setTexture(G4_Texture);
+	G4_Sprite.setScale(0.075f, 0.075f);
 }
 
 void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShape& cell2 , sf::CircleShape& cell3)
@@ -1180,11 +1194,33 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		N1_Sprite.setPosition(width * CELL * 0.8, height * CELL * 1.27);
 		Window.draw(N1_Sprite);
 	}
-	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'C')
+	else if ((matrix[height][width] == "G1" && red.Get_Direction() == 'C')|| (matrix[height][width] == "G2" && blue.Get_Direction() == 'C')|| (matrix[height][width] == "G3" && pink.Get_Direction() == 'C')|| (matrix[height][width] == "G4" && orange.Get_Direction() == 'C'))
 	{
-		if (!G1_Texture.loadFromFile("G0.png")) {}
-		G1_Sprite.setPosition(red.Get_X() * CELL * 0.989, red.Get_Y() * CELL * 0.975);
-		Window.draw(G1_Sprite);
+		if (matrix[height][width] == "G1")
+		{
+			if (!G1_Texture.loadFromFile("G1_0.png")) {}
+			G1_Sprite.setPosition(red.Get_X() * CELL * 0.989, red.Get_Y() * CELL * 0.975);
+			Window.draw(G1_Sprite);
+		}
+		else if (matrix[height][width] == "G2")
+		{
+			if (!G2_Texture.loadFromFile("G2_0.png")) {}
+			G2_Sprite.setPosition(blue.Get_X() * CELL * 0.989, blue.Get_Y() * CELL * 0.975);
+			Window.draw(G2_Sprite);
+		}
+		else if (matrix[height][width] == "G3")
+		{
+			if (!G3_Texture.loadFromFile("G3_0.png")) {}
+			G3_Sprite.setPosition(pink.Get_X() * CELL * 0.989, pink.Get_Y() * CELL * 0.975);
+			Window.draw(G3_Sprite);
+		}
+		else
+		{
+			if (!G4_Texture.loadFromFile("G4_0.png")) {}
+			G4_Sprite.setPosition(orange.Get_X() * CELL * 0.989, orange.Get_Y() * CELL * 0.975);
+			Window.draw(G4_Sprite);
+		}
+
 	}
 	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'R')
 	{
@@ -1258,7 +1294,7 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 			all_y = 0.9;
 		}	
 
-		if (!G1_Texture.loadFromFile("G1.png")) {}
+		if (!G1_Texture.loadFromFile("G1_1.png")) {}
 		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
 		Window.draw(G1_Sprite);
 	}
@@ -1336,7 +1372,7 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 			all_y = 0.975;
 		}
 
-		if (!G1_Texture.loadFromFile("G2.png")) {}
+		if (!G1_Texture.loadFromFile("G_2.png")) {}
 		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
 		Window.draw(G1_Sprite);
 	}
@@ -1421,7 +1457,7 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		else if (all.Get_X() > 20)
 			all_x = 0.978;
 
-		if (!G1_Texture.loadFromFile("G3.png")) {}
+		if (!G1_Texture.loadFromFile("G1_3.png")) {}
 		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
 		Window.draw(G1_Sprite);
 	}
@@ -1480,7 +1516,7 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 			all_x = 0.975;
 		}
 
-		if (!G1_Texture.loadFromFile("G4.png")) {}
+		if (!G1_Texture.loadFromFile("G1_4.png")) {}
 		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
 		Window.draw(G1_Sprite);
 	}
