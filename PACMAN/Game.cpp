@@ -4,13 +4,16 @@
 #include "Pacman.hpp"
 #include <string>
 #include "Red.hpp"
+#include "Blue.hpp"
+#include "Pink.hpp"
+#include "Orange.hpp"
 #include "Ghost.hpp"
 //
 #include <iostream>
 
 int Game::count_of_points = 125;
 
-Game::Game() :Window(sf::VideoMode(CELL* Width* Screen, CELL* Height* Screen * 1.2), "Pacman"), matrix(Width, std::vector<std::string>(Height)), pacman(matrix),red(Red(20,20)), blue(Red(0, 22)) , orange(Red(3, 22)) , pink(Red(6, 22))
+Game::Game() :Window(sf::VideoMode(CELL* Width* Screen, CELL* Height* Screen * 1.2), "Pacman"), matrix(Width, std::vector<std::string>(Height)), pacman(matrix),red(Red(20,20)), blue(Blue(0, 22)) , orange(Pink(3, 22)) , pink(Pink(6, 22))
 {
 	Icon.loadFromFile("Icon.png");
 	Window.setSize(sf::Vector2u(CELL * Width * Screen, CELL * Height * Screen * 1.1));
