@@ -10,7 +10,7 @@
 
 int Game::count_of_points = 125;
 
-Game::Game() :Window(sf::VideoMode(CELL* Width* Screen, CELL* Height* Screen * 1.2), "Pacman"), matrix(Width, std::vector<std::string>(Height)), pacman(matrix),red(Red(3,22))
+Game::Game() :Window(sf::VideoMode(CELL* Width* Screen, CELL* Height* Screen * 1.2), "Pacman"), matrix(Width, std::vector<std::string>(Height)), pacman(matrix),red(Red(20,20))
 {
 	Icon.loadFromFile("Icon.png");
 	Window.setSize(sf::Vector2u(CELL * Width * Screen, CELL * Height * Screen * 1.1));
