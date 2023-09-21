@@ -9,6 +9,6 @@ public:
 	int& Get_X();
 	int& Get_Y();
 private:
-	char Direction;
+	char Direction{'C'};
 	int x{0}, y{0};
 };

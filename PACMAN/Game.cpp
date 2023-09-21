@@ -535,13 +535,14 @@ void Game::Setup_Textures()
 
 	if (!G1_Texture.loadFromFile("G0.png")) {}
 	G1_Sprite.setTexture(G1_Texture);
-	G1_Sprite.setScale(0.04f, 0.04f);
+	G1_Sprite.setScale(0.075f, 0.075f);
+
 }
 
 void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShape& cell2 , sf::CircleShape& cell3)
 {
 	//shit I made mistake in creating of textures on the begining thats why I must pay for that with this if's fuck
-	float pacman_x, pacman_y;
+	float pacman_x, pacman_y, all_x, all_y;
 	path = "N";
 	if (matrix[height][width] == "#")
 	{
@@ -1179,13 +1180,308 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 		N1_Sprite.setPosition(width * CELL * 0.8, height * CELL * 1.27);
 		Window.draw(N1_Sprite);
 	}
-	else if (matrix[height][width] == "G1")
+	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'C')
 	{
-		if (red.Get_Direction() == 'O')
+		if (!G1_Texture.loadFromFile("G0.png")) {}
+		G1_Sprite.setPosition(red.Get_X() * CELL * 0.989, red.Get_Y() * CELL * 0.975);
+		Window.draw(G1_Sprite);
+	}
+	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'R')
+	{
+		Ghost all;
+		if (matrix[height][width] == "G1")
+			all = red;
+
+		all_x = 0.981;
+		all_y = 0.975;
+		if (all.Get_X() <= 20 && all.Get_Y() <= 10)
 		{
-			if (!G1_Texture.loadFromFile("G0.png")) {}
+			all_x = 0.95;
+			all_y = 0.9;
 		}
-		G1_Sprite.setPosition(width * CELL, height * CELL*0.965);
+		else if (all.Get_X() >= 2 && all.Get_X() <= 9 && (all.Get_Y() == 26 || all.Get_Y() == 34))
+		{
+			all_x = 0.91;
+		}
+		else if (all.Get_Y() == 30 && all.Get_X() >= 2 && all.Get_X() <= 5)
+		{
+			all_x = 0.85;
+		}
+		else if (all.Get_Y() == 18 && all.Get_X() <= 20)
+		{
+			all_x = 0.96;
+			all_y = 0.95;
+		}
+		else if (all.Get_Y() == 18 && all.Get_X() > 20)
+		{
+			all_x = 0.985;
+			all_y = 0.95;
+		}
+		else if (all.Get_Y() == 20)
+		{
+			all_y = 0.96;
+		}
+		else if (all.Get_Y() == 34 && all.Get_X() >= 13 && all.Get_X() <= 18)
+		{
+			all_x = 0.96;
+		}
+		else if (all.Get_Y() == 38)
+		{
+			all_y = 0.98;
+		}
+		else if (all.Get_Y() > 15 && all.Get_Y() <= 20 && all.Get_X() <= 20)
+		{
+			all_x = 0.96;
+		}
+		else if (all.Get_Y() == 22 && all.Get_X() > 20)
+		{
+			all_x = 1.03;
+			all_y = 0.965;
+		}
+		else if (all.Get_Y() == 22 && all.Get_X() < 20)
+		{
+			all_x = 0.91;
+			all_y = 0.965;
+		}
+		else if (all.Get_Y() > 10 && all.Get_Y() <= 20)
+		{
+			all_x = 0.98;
+			all_y = 0.94;
+		}
+		else if (all.Get_X() > 20 && all.Get_Y() > 10 && all.Get_Y() <= 20)
+		{
+			all_x = 0.5;
+			all_y = 0.9;
+		}
+		else if (all.Get_X() > 20 && all.Get_Y() <= 10)
+		{
+			all_y = 0.9;
+		}	
+
+		if (!G1_Texture.loadFromFile("G1.png")) {}
+		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+		Window.draw(G1_Sprite);
+	}
+	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'L')
+	{
+		Ghost all;
+		if (matrix[height][width] == "G1")
+			all = red;
+
+		all_x = 0.915;
+		all_y = 0.975;
+		if (all.Get_X() <= 20 && all.Get_Y() <= 10)
+		{
+			all_x = 0.87;
+			all_y = 0.9;
+		}
+		else if (all.Get_Y() == 30 && all.Get_X() >= 36 && all.Get_X() <= 39)
+		{
+			all_x = 0.99;
+		}
+		else if (all.Get_X() >= 32 && all.Get_X() <= 39 && (all.Get_Y() == 26 || all.Get_Y() == 34))
+		{
+			all_x = 0.98;
+		}
+		else if (all.Get_Y() == 34 && all.Get_X() >= 13 && all.Get_X() <= 18)
+		{
+			all_x = 0.96;
+		}
+		else if (all.Get_Y() == 34 && all.Get_X() >= 23 && all.Get_X() <= 28)
+		{
+			all_x = 0.98;
+		}
+		else if (all.Get_Y() == 18 && all.Get_X() > 20)
+		{
+			all_x = 0.985;
+			all_y = 0.95;
+		}
+		else if (all.Get_Y() > 15 && all.Get_Y() <= 20)
+		{
+			all_x = 0.96;
+			all_y = 0.96;
+		}
+		else if (all.Get_Y() == 22 && all.Get_X() > 20)
+		{
+			all_x = 0.985;
+			all_y = 0.965;
+		}
+		else if (all.Get_Y() == 22 && all.Get_X() <= 20)
+		{
+			all_x = 0.75;
+			all_y = 0.965;
+		}
+		else if (all.Get_Y() == 38)
+		{
+			all_y = 0.98;
+		}
+		else if (all.Get_X() <= 20 && all.Get_Y() > 10 && all.Get_Y() <= 20)
+		{
+			all_x = 0.9;
+			all_y = 0.95;
+		}
+		else if (all.Get_X() > 20 && all.Get_Y() > 10 && all.Get_Y() <= 20)
+		{
+			all_x = 0.95;
+			all_y = 0.94;
+		}
+		else if (all.Get_X() > 20 && all.Get_Y() <= 10)
+		{
+			all_x = 0.97;
+			all_y = 0.9;
+		}
+		else if (all.Get_X() > 20 && all.Get_Y() >= 20)
+		{
+			all_x = 0.95;
+			all_y = 0.975;
+		}
+
+		if (!G1_Texture.loadFromFile("G2.png")) {}
+		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+		Window.draw(G1_Sprite);
+	}
+	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'U')
+	{
+		Ghost all;
+		if (matrix[height][width] == "G1")
+			all = red;
+
+		all_x = 1;
+		all_y = 0.92;
+		if (all.Get_X() == 13)
+		{
+			all_x = 0.947;
+			all_y = 0.955;
+		}
+		else if (all.Get_X() == 5 && all.Get_Y() >= 30)
+		{
+			all_x = 0.85;
+			all_y = 0.98;
+		}
+		else if (all.Get_X() == 36 && all.Get_Y() >= 30)
+		{
+			all_x = 0.98;
+			all_y = 0.98;
+		}
+		else if (all.Get_X() == 2 && all.Get_Y() > 20)
+		{
+			all_x = 0.7;
+			all_y = 0.975;
+		}
+		else if ((all.Get_X() == 18 || all.Get_X() == 23) && all.Get_Y() >= 34 && all.Get_Y() <= 38)
+		{
+			all_x = 0.965;
+			all_y = 0.98;
+		}
+		else if (all.Get_X() == 39 && all.Get_Y() > 20)
+		{
+			all_x = 0.98;
+			all_y = 0.98;
+		}
+		else if (all.Get_X() == 23 && all.Get_Y() == 18)
+		{
+			all_x = 0.97;
+			all_y = 0.975;
+		}
+		else if (all.Get_X() == 18 && all.Get_Y() == 18)
+		{
+			all_x = 0.96;
+			all_y = 0.975;
+		}
+		else if (all.Get_X() == 2 && all.Get_Y() <= 20)
+		{
+			all_x = 0.7;
+			all_y = 0.9;
+		}
+		else if (all.Get_X() == 28)
+		{
+			all_x = 0.978;
+			all_y = 0.955;
+		}
+		else if (all.Get_X() == 18)
+		{
+			all_x = 0.96;
+			all_y = 0.94;
+		}
+		else if (all.Get_X() == 23)
+		{
+			all_x = 0.965;
+			all_y = 0.92;
+		}
+		else if (all.Get_X() > 13 && all.Get_X() < 20 && all.Get_Y() > 16)
+		{
+			all_y = 0.97;
+		}
+		else if (all.Get_X() > 20 && all.Get_X() < 28 && all.Get_Y() > 16)
+		{
+			all_y = 0.975;
+		}
+		else if (all.Get_X() <= 20)
+			all_x = 0.915;
+		else if (all.Get_X() > 20)
+			all_x = 0.978;
+
+		if (!G1_Texture.loadFromFile("G3.png")) {}
+		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
+		Window.draw(G1_Sprite);
+	}
+	else if (matrix[height][width] == "G1" && red.Get_Direction() == 'D')
+	{
+		Ghost all;
+		if (matrix[height][width] == "G1")
+			all = red;
+
+		all_x = 0.98;
+		all_y = 0.98;
+		if (all.Get_X() == 2 && all.Get_Y() <= 20)
+		{
+			all_x = 0.7;
+			all_y = 0.96;
+		}
+		else if (all.Get_X() == 5 && all.Get_Y() >= 30)
+		{
+			all_x = 0.85;
+			all_y = 0.98;
+		}
+		else if ((all.Get_X() == 18 || all.Get_X() == 23) && all.Get_Y() >= 34 && all.Get_Y() <= 38)
+		{
+			all_x = 0.965;
+			all_y = 0.985;
+		}
+		else if (all.Get_X() == 2 && all.Get_Y() > 20)
+		{
+			all_x = 0.7;
+			all_y = 0.975;
+		}
+		else if (all.Get_X() == 23 && all.Get_Y() >= 18 && all.Get_Y() <= 20)
+		{
+			all_y = 0.97;
+		}
+		else if (all.Get_X() == 9)
+		{
+			all_x = 0.91;
+		}
+		else if (all.Get_X() == 18)
+		{
+			all_x = 0.96;
+			all_y = 0.95;
+		}
+		else if (all.Get_X() == 23)
+		{
+			all_x = 0.965;
+			all_y = 0.92;
+		}
+		else if (all.Get_X() == 13)
+		{
+			all_x = 0.947;
+		}
+		else if (all.Get_X() == 28)
+		{
+			all_x = 0.975;
+		}
+
+		if (!G1_Texture.loadFromFile("G4.png")) {}
+		G1_Sprite.setPosition(width * CELL * all_x, height * CELL * all_y);
 		Window.draw(G1_Sprite);
 	}
 }
