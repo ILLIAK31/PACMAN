@@ -348,12 +348,13 @@ void Game::Update()
 	if (pacman.Get_X() == x0 && pacman.Get_Y() == y0 && pacman.Get_animation_status() == 3)
 		pacman.Get_animation_status() = 1;
 
-	//Colission with ghost
+	//Collision with ghost
 	if (pacman.Check_collision_with_ghost(matrix))
 	{
 		--pacman.Get_Lifes();
 		//Music & animation
-		//Restart
+		std::this_thread::sleep_for(std::chrono::seconds(3));
+		Restart();
 	}
 }
 
@@ -1641,6 +1642,11 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 			Window.draw(G4_Sprite);
 		}
 	}
+}
+
+void Game::Restart()
+{
+	//
 }
 
 Game::~Game(){}

@@ -25,6 +25,7 @@ private:
 	void Render();
 	void Update();
 	void Process();
+	void Restart();
 	void Setup_Textures();
 	void Print(int height , int width , sf::RectangleShape& cell , sf::CircleShape& cell2 , sf::CircleShape& cell3);
 	std::vector<std::vector<std::string>> matrix;
