@@ -1,6 +1,12 @@
 #include "Pacman.hpp"
 
-Pacman::Pacman(std::vector<std::vector<std::string>>& matrix):x(20),y(28){}
+Pacman::Pacman(std::vector<std::vector<std::string>>& matrix):x(20),y(28)
+{
+	ghost_names.push_back("G1");
+	ghost_names.push_back("G2");
+	ghost_names.push_back("G3");
+	ghost_names.push_back("G4");
+}
 
 int& Pacman::Get_X()
 {
@@ -59,6 +65,21 @@ bool Pacman::Check_collision_down(std::vector<std::vector<std::string>>& matrix)
 	if (((matrix[this->y + 2][this->x] == " ") || (matrix[this->y + 2][this->x] == "*") || (matrix[this->y + 2][this->x] == "*P") || (matrix[this->y + 2][this->x] == "cherry")) && ((matrix[this->y + 2][this->x - 1] == " ") || (matrix[this->y + 2][this->x - 1] == "*") || (matrix[this->y + 2][this->x - 1] == "*P")||(matrix[this->y + 2][this->x - 1] == "cherry")) && ((matrix[this->y + 2][this->x + 1] == " ") || (matrix[this->y + 2][this->x + 1] == "*") || (matrix[this->y + 2][this->x + 1] == "*P") || (matrix[this->y + 2][this->x + 1] == "cherry")))
 		return true;
 	return false;
+}
+
+bool operator==(std::string str, std::vector<std::string> obj)
+{
+	return ((str == obj[0])||(str == obj[1])||(str == obj[2])||(str == obj[3])) ? true : false;
+}
+
+bool Pacman::Check_collision_with_ghost(std::vector<std::vector<std::string>>& matrix)
+{
+	return ((matrix[this->y][this->x + 1] == ghost_names)||(matrix[this->y][this->x - 1] == ghost_names)||(matrix[this->y+1][this->x] == ghost_names)||(matrix[this->y-1][this->x] == ghost_names))?true:false;
+}
+
+std::vector<std::string>& Pacman::Get_ghost_names()
+{
+	return this->ghost_names;
 }
 
 Pacman::~Pacman(){}

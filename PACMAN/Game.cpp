@@ -10,6 +10,8 @@
 #include "Ghost.hpp"
 //
 #include <iostream>
+#include <thread>
+
 
 int Game::count_of_points = 125;
 
@@ -345,6 +347,14 @@ void Game::Update()
 	}
 	if (pacman.Get_X() == x0 && pacman.Get_Y() == y0 && pacman.Get_animation_status() == 3)
 		pacman.Get_animation_status() = 1;
+
+	//Colission with ghost
+	if (pacman.Check_collision_with_ghost(matrix))
+	{
+		--pacman.Get_Lifes();
+		//Music & animation
+		//Restart
+	}
 }
 
 void Game::Process()
