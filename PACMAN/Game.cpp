@@ -69,7 +69,11 @@ void Game::Run(Menu menu)
 		if (count_of_points == 0 || pacman.Get_Lifes() == 0)
 		{
 			matrix[pacman.Get_Y()][pacman.Get_X()] = "";
-			//Ghosts code here
+			matrix[red.Get_Y()][red.Get_X()] = "";
+			matrix[blue.Get_Y()][blue.Get_X()] = "";
+			matrix[pink.Get_Y()][pink.Get_X()] = "";
+			matrix[orange.Get_Y()][orange.Get_X()] = "";
+
 			if (Score > Best_score)
 				Best_score = Score;
 
@@ -353,7 +357,14 @@ void Game::Update()
 	{
 		--pacman.Get_Lifes();
 		//Music & animation
-		std::this_thread::sleep_for(std::chrono::seconds(3));
+		matrix[pacman.Get_Y()][pacman.Get_X()] = "";
+		matrix[red.Get_Y()][red.Get_X()] = "";
+		matrix[blue.Get_Y()][blue.Get_X()] = "";
+		matrix[pink.Get_Y()][pink.Get_X()] = "";
+		matrix[orange.Get_Y()][orange.Get_X()] = "";
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+		Render();
+		std::this_thread::sleep_for(std::chrono::seconds(2));
 		Restart();
 	}
 }
@@ -1646,7 +1657,27 @@ void Game::Print(int height, int width, sf::RectangleShape& cell, sf::CircleShap
 
 void Game::Restart()
 {
-	//
+	matrix_setup.Setup_Matrix(matrix);
+	Game::count_of_points = 125;
+	pacman.Get_animation_status() = 1;
+	pacman.Get_ghost_hunter_mode() = false;
+	pacman.Direction = red.Get_Direction() = blue.Get_Direction() = pink.Get_Direction() = orange.Get_Direction() = 'C';
+	Clock_status = Cherry_status = true;
+
+	pacman.Get_X() = pink.Get_X() = red.Get_X() = red.Get_Y() = 20;
+	pacman.Get_Y() = 28;
+	blue.Get_X() = 17;
+	blue.Get_Y() = pink.Get_Y() = orange.Get_Y() = 24;
+	orange.Get_X() = 23;
+	matrix[pacman.Get_Y()][pacman.Get_X()] = '@';
+	matrix[red.Get_Y()][red.Get_X()] = "G1";
+	matrix[blue.Get_Y()][blue.Get_X()] = "G2";
+	matrix[pink.Get_Y()][pink.Get_X()] = "G3";
+	matrix[orange.Get_Y()][orange.Get_X()] = "G4";
+
+	if (Score > Best_score)
+		Best_score = Score;
+	Score = 0;
 }
 
 Game::~Game(){}
