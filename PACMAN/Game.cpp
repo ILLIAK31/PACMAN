@@ -158,20 +158,17 @@ void Game::Update()
 {	
 	Render();
 	//beggin sound and pause
-	elapsedSeconds = Clock.getElapsedTime().asSeconds();
-	elapsedSeconds -= elapsedSeconds_0;
 	if (Clock_status == true)
 	{
 		sf::Music Music;
 		if (!Music.openFromFile("sound1.wav")){}
 		else
 		{
+			auto start_time5 = std::chrono::steady_clock::now();
+			auto duration5 = std::chrono::seconds(4);
+			auto end_time5 = start_time5 + duration5;
 			Music.play();
-			while (elapsedSeconds < 4.6 && Clock_status == true)
-			{
-				elapsedSeconds = Clock.getElapsedTime().asSeconds();
-				elapsedSeconds -= elapsedSeconds_0;
-			}
+			while (std::chrono::high_resolution_clock::now() < end_time5) {}
 			Music.stop();
 		}
 	}
@@ -362,9 +359,19 @@ void Game::Update()
 		matrix[blue.Get_Y()][blue.Get_X()] = "";
 		matrix[pink.Get_Y()][pink.Get_X()] = "";
 		matrix[orange.Get_Y()][orange.Get_X()] = "";
-		std::this_thread::sleep_for(std::chrono::seconds(1));
+		sf::Music Music4;
+		if (!Music4.openFromFile("sound4.wav")) {}
+		else
+		{
+			auto start_time4 = std::chrono::steady_clock::now();
+			auto duration4 = std::chrono::seconds(4);
+			auto end_time4 = start_time4 + duration4;
+			Music4.play();
+			while (std::chrono::high_resolution_clock::now() < end_time4) {}
+			Music4.stop();
+		}
 		Render();
-		std::this_thread::sleep_for(std::chrono::seconds(2));
+		std::this_thread::sleep_for(std::chrono::seconds(1));
 		Restart();
 	}
 }
